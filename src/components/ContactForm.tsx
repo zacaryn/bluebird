@@ -1,0 +1,174 @@
+'use client'
+
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+type FormData = {
+  name: string
+  email: string
+  phone: string
+  message: string
+  loanType: string
+}
+
+export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>()
+
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true)
+    try {
+      // TODO: Implement form submission to your backend
+      console.log('Form data:', data)
+      setSubmitSuccess(true)
+      reset()
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <div className="space-y-6">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+            Name
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              id="name"
+              {...register('name', { required: 'Name is required' })}
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+            />
+            {errors.name && (
+              <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            Email
+          </label>
+          <div className="mt-2">
+            <input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              })}
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+            />
+            {errors.email && (
+              <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
+            Phone
+          </label>
+          <div className="mt-2">
+            <input
+              type="tel"
+              id="phone"
+              {...register('phone', {
+                required: 'Phone number is required',
+                pattern: {
+                  value: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+                  message: 'Invalid phone number format',
+                },
+              })}
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+            />
+            {errors.phone && (
+              <p className="mt-2 text-sm text-red-600">{errors.phone.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="loanType" className="block text-sm font-medium leading-6 text-gray-900">
+            Loan Type
+          </label>
+          <div className="mt-2">
+            <select
+              id="loanType"
+              {...register('loanType', { required: 'Please select a loan type' })}
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+            >
+              <option value="">Select a loan type</option>
+              <option value="va">VA Loan</option>
+              <option value="fha">FHA Loan</option>
+              <option value="conventional">Conventional Loan</option>
+              <option value="reverse">Reverse Mortgage</option>
+              <option value="other">Other</option>
+            </select>
+            {errors.loanType && (
+              <p className="mt-2 text-sm text-red-600">{errors.loanType.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium leading-6 text-gray-900">
+            Message
+          </label>
+          <div className="mt-2">
+            <textarea
+              id="message"
+              rows={4}
+              {...register('message', { required: 'Message is required' })}
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+            />
+            {errors.message && (
+              <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {submitSuccess && (
+        <div className="rounded-md bg-green-50 p-4">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-green-800">
+                Thank you for your message! We'll be in touch soon.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="rounded-md bg-blue-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50 disabled:cursor-not-allowed w-full"
+        >
+          {isSubmitting ? 'Sending...' : 'Send Message'}
+        </button>
+      </div>
+    </form>
+  )
+} 

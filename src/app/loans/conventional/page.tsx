@@ -109,8 +109,8 @@ export default function ConventionalLoanPage() {
                 <li>Low down payment options (as low as 3%)</li>
               </ul>
               <p className="text-lg text-gray-800 leading-relaxed">
-                Our team will help you understand your options and choose the best conventional loan program for 
-                your specific situation. We'll guide you through the entire process, from application to closing.
+                David Jeffrey will help you understand your options and choose the best conventional loan program for 
+                your specific situation. He'll guide you through the entire process, from application to closing.
               </p>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function ConventionalLoanPage() {
           <div className="bg-[#00659C] text-white rounded-xl p-8 my-12 shadow-lg">
             <h3 className="text-2xl font-semibold mb-4">Ready to Get Started?</h3>
             <p className="mb-6 text-white/90">
-              Contact us today to learn more about our conventional loan options. Our experienced team will help 
+              Contact us today to learn more about our conventional loan options. David Jeffrey will help 
               you find the right loan program for your needs and guide you through the application process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

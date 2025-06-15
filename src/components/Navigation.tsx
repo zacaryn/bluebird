@@ -30,6 +30,7 @@ const navigation = {
         { name: 'Trust Bluebird', href: '/info/trust-bluebird' },
       ],
     },
+    { name: 'Calculator', href: '/calculator' },
     { name: 'Contact', href: '/contact' },
     { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', highlight: true, target: '_blank', rel: 'noopener noreferrer' },
   ],

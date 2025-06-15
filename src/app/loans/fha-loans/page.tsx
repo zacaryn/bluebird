@@ -98,7 +98,7 @@ export default function FHALoansPage() {
             <p className="text-lg text-gray-800 leading-relaxed">
               FHA loans are an attractive option for homebuyers, especially first-time buyers. With lower down 
               payment requirements and more flexible credit guidelines, these loans make homeownership achievable 
-              for many who might not qualify for conventional financing. Our team understands the FHA loan 
+              for many who might not qualify for conventional financing. David Jeffrey understands the FHA loan 
               process and can help you navigate it smoothly.
             </p>
           </div>
@@ -121,8 +121,8 @@ export default function FHALoansPage() {
           <div className="bg-[#00659C] text-white rounded-xl p-8 my-12 shadow-lg">
             <h3 className="text-2xl font-semibold mb-4">Ready to Get Started?</h3>
             <p className="mb-6 text-white/90">
-              Contact us today to learn more about FHA loans and start your application process. Our experienced 
-              team will guide you through every step.
+              Contact us today to learn more about FHA loans and start your application process. David Jeffrey 
+              will guide you through every step with personalized service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link

@@ -28,7 +28,7 @@ export default function AboutBluebirdPage() {
             About Bluebird Mortgage
           </h1>
           <p className="text-xl md:text-2xl text-white/90">
-            Your Local Mortgage Experts
+            Making Homeownership Dreams a Reality
           </p>
         </div>
       </div>
@@ -41,12 +41,22 @@ export default function AboutBluebirdPage() {
           </div>
 
           <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Mission</h2>
+            <p className="text-lg text-gray-800 leading-relaxed">
+              Today's mortgage market is crowded and complicated. It's our job to make sure that customers 
+              understand exactly how their mortgage works and that it is a financially sound decision. While 
+              buying a house or refinancing can sometimes feel like a second or third job, the end result 
+              should change your life for the better. We are here to help make that happen.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="w-full md:w-1/3 relative">
                 <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
                   <Image
                     src="/images/david.png"
-                    alt="David Jeffrey - Owner of Bluebird Mortgage"
+                    alt="David Jeffrey - Founding Mortgage Broker"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -55,71 +65,52 @@ export default function AboutBluebirdPage() {
                 </div>
               </div>
               <div className="w-full md:w-2/3">
-                <h2 className="text-3xl font-bold mb-6 text-gray-900">Meet David Jeffrey</h2>
+                <h2 className="text-3xl font-bold mb-6 text-gray-900">About David Jeffrey, Founding Mortgage Broker</h2>
+                <div className="mb-4">
+                  <span className="inline-block bg-[#00659C] text-white px-3 py-1 rounded-full text-sm font-medium">
+                    NMLS# 1649074
+                  </span>
+                </div>
                 <p className="text-lg text-gray-800 leading-relaxed mb-4">
-                  As the owner of Bluebird Mortgage, David Jeffrey brings years of experience and expertise to 
-                  the mortgage industry. His commitment to providing exceptional service and personalized solutions 
-                  has made Bluebird Mortgage a trusted name in the industry.
+                  David Jeffrey has been a Colorado resident for over 12 years and witnessed the tremendous growth 
+                  that shapes our region into one of the most desirable places to live. After spending 6 years in 
+                  the National Guard, David graduated from Jacksonville State University in 2003 with a Bachelor's 
+                  degree in Marketing.
+                </p>
+                <p className="text-lg text-gray-800 leading-relaxed mb-4">
+                  After relocating to Colorado, he found his footing in the community and spent years as a youth 
+                  guitar instructor at the Colorado Springs Conservatory and a choir director at Monument Community 
+                  Presbyterian church. After working for 12 years servicing clients in the marketing and advertising 
+                  industries, he recently set out to help make this mountain landscape a reality for others captivated 
+                  by its beauty and wanting to call it home.
                 </p>
                 <p className="text-lg text-gray-800 leading-relaxed">
-                  David's approach to mortgage lending focuses on building lasting relationships with clients and 
-                  understanding their unique financial situations. His deep knowledge of various loan programs 
-                  helps clients find the perfect mortgage solution for their needs.
+                  His whole life, David's carried a deep obsession for financial investments and strategy and is 
+                  excited to integrate those skills into his role here with Bluebird Mortgage.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Story</h2>
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">Personal Life & Community</h2>
+            <p className="text-lg text-gray-800 leading-relaxed mb-6">
+              David is a full-time Dad and owns a home in the Ivywild neighborhood. You can find him playing 
+              mandolin for the local bluegrass band Grass It Up, and he regularly performs at The Governor's 
+              mansion, Colorado Springs Fine Art Center, and The Broadmoor Resort and Hotel.
+            </p>
             <p className="text-lg text-gray-800 leading-relaxed">
-              Bluebird Mortgage specializes in providing a variety of home loan services to our customers, 
-              including conventional loans, FHA loans, VA loans, and jumbo loans. Our goal is to make the 
-              mortgage process as simple and straightforward as possible, helping our clients navigate the 
-              often complicated and confusing world of home financing.
+              This deep connection to the Colorado Springs community gives David unique insight into the local 
+              real estate market and helps him better serve clients who are looking to make Colorado their home.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 my-12">
-            <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">Our Mission</h3>
-              <p className="text-gray-800">
-                To provide exceptional mortgage services with integrity, transparency, and personalized attention 
-                to each client's unique needs. We strive to make the dream of homeownership accessible to everyone 
-                in our community.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">Our Values</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Integrity in all our dealings</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Commitment to client success</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Excellence in service</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Community involvement</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Continuous improvement</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
           <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Services</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Loan Programs</h2>
+            <p className="text-lg text-gray-800 leading-relaxed mb-6">
+              Bluebird Mortgage offers a comprehensive range of loan programs to meet your homeownership needs:
+            </p>
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">Purchase Loans</h3>
                 <ul className="space-y-2">
@@ -137,12 +128,12 @@ export default function AboutBluebirdPage() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">Jumbo Loans</span>
+                    <span className="text-gray-800">New Construction Loans</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Refinancing</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Refinancing & Specialty</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <span className="text-[#00659C] mr-2">•</span>
@@ -154,57 +145,78 @@ export default function AboutBluebirdPage() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">VA IRRRL</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">FHA Streamline</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Special Programs</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">First-Time Homebuyer</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">Down Payment Assistance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00659C] mr-2">•</span>
                     <span className="text-gray-800">Reverse Mortgages</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00659C] mr-2">•</span>
-                    <span className="text-gray-800">New Construction</span>
+                    <span className="text-gray-800">Down Payment Assistance</span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
 
+          <div className="grid md:grid-cols-2 gap-8 my-12">
+            <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Why Choose Bluebird Mortgage</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="text-[#00659C] mr-2">✓</span>
+                  <span className="text-gray-800">Personal service from an experienced local broker</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#00659C] mr-2">✓</span>
+                  <span className="text-gray-800">Deep understanding of Colorado Springs market</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#00659C] mr-2">✓</span>
+                  <span className="text-gray-800">Financial strategy expertise</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#00659C] mr-2">✓</span>
+                  <span className="text-gray-800">Clear communication throughout the process</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#00659C] mr-2">✓</span>
+                  <span className="text-gray-800">Community-focused approach</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Our Commitment</h3>
+              <p className="text-gray-800 mb-4">
+                We believe every mortgage should be a financially sound decision that improves your life. 
+                David works personally with each client to ensure you understand your loan completely.
+              </p>
+              <p className="text-gray-800">
+                From first-time homebuyers to seasoned investors, we're here to make your Colorado 
+                homeownership dreams a reality.
+              </p>
+            </div>
+          </div>
+
           <div className="bg-[#00659C] text-white rounded-xl p-8 my-12 shadow-lg">
-            <h3 className="text-2xl font-semibold mb-4">Work With Us</h3>
+            <h3 className="text-2xl font-semibold mb-4">Ready to Start Your Journey?</h3>
             <p className="mb-6 text-white/90">
-              Whether you're a first-time homebuyer or looking to refinance, our team is here to help you 
-              achieve your homeownership goals. Contact us today to learn more about our services and how 
-              we can help you.
+              Whether you're buying your first home, refinancing, or looking to invest in Colorado real estate, 
+              David Jeffrey is here to guide you through every step of the process with personalized service 
+              and expert advice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
+                href="https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-white text-[#00659C] px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors text-center font-semibold"
               >
-                Contact Us
+                Start Application
               </Link>
               <Link
-                href="/apply"
+                href="/contact"
                 className="inline-block bg-transparent text-white border-2 border-white px-6 py-3 rounded-lg hover:bg-white hover:text-[#00659C] transition-colors text-center font-semibold"
               >
-                Start Application
+                Contact David
               </Link>
             </div>
           </div>

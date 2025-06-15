@@ -72,7 +72,7 @@ export default function TrustBluebirdPage() {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <span className="text-[#00659C] mr-2">•</span>
-                  <span className="text-gray-800">Dedicated loan officers for every client</span>
+                  <span className="text-gray-800">Direct access to your loan officer</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-[#00659C] mr-2">•</span>
@@ -114,7 +114,7 @@ export default function TrustBluebirdPage() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">Expertise</h3>
                 <p className="text-gray-800">
-                  Our team of experienced professionals stays up-to-date with the latest industry trends and 
+                  David Jeffrey stays up-to-date with the latest industry trends and 
                   regulations to provide you with expert guidance.
                 </p>
               </div>

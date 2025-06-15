@@ -9,10 +9,10 @@ const navigation = {
     { name: 'Refinance', href: '/loans/refinance' },
   ],
   company: [
+    { name: 'About', href: '/info/about-bluebird' },
+    { name: 'Calculator', href: '/calculator' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Apply Now', href: '/apply' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', external: true },
   ],
 }
 
@@ -56,9 +56,20 @@ export default function Footer() {
               <ul role="list" className="mt-4 space-y-3">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
-                      {item.name}
-                    </Link>
+                    {item.external ? (
+                      <a 
+                        href={item.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm leading-6 text-gray-300 hover:text-white"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

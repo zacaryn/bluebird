@@ -166,7 +166,7 @@ export default function DownPaymentAssistancePage() {
             <h2 className="text-3xl font-bold mb-6 text-gray-900">How We Can Help</h2>
             <p className="text-lg text-gray-800 leading-relaxed mb-6">
               At Bluebird Mortgage, we work closely with both CHFA and CHAC to help our clients access down 
-              payment assistance programs. Our experienced team will:
+              payment assistance programs. David Jeffrey will:
             </p>
             <ul className="space-y-2">
               <li className="flex items-start">
@@ -196,7 +196,7 @@ export default function DownPaymentAssistancePage() {
             <h3 className="text-2xl font-semibold mb-4">Ready to Learn More?</h3>
             <p className="mb-6 text-white/90">
               Contact us today to discuss down payment assistance options and start your journey to homeownership. 
-              Our team is here to help you understand your options and find the right program for your needs.
+              David Jeffrey is here to help you understand your options and find the right program for your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link

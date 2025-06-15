@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import AdTracking from '@/components/AdTracking';
@@ -87,7 +87,8 @@ const loanTypeData: Record<string, LoanTypeInfo> = {
   }
 };
 
-export default function GetStarted() {
+// Create a new component to handle search params
+function GetStartedForm() {
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<Step>('intro');
   const [formData, setFormData] = useState<FormData>({});
@@ -585,5 +586,24 @@ export default function GetStarted() {
       </div>
       <AdTracking />
     </div>
+  );
+}
+
+// Update the main component to use Suspense
+export default function GetStarted() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="animate-pulse">
+            <div className="h-2 bg-gray-200 rounded-full w-full mb-8"></div>
+            <div className="h-8 bg-gray-200 rounded-lg w-3/4 mx-auto mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded-lg w-1/2 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    }>
+      <GetStartedForm />
+    </Suspense>
   );
 } 

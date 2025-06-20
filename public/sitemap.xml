@@ -2,62 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bluebirdmortgage.com/</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://bluebirdmortgage.com/get-started</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bluebirdmortgage.com/loans</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bluebirdmortgage.com/info</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://bluebirdmortgage.com/loans/va-loans</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bluebirdmortgage.com/loans/fha-loans</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bluebirdmortgage.com/loans/conventional</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bluebirdmortgage.com/loans/reverse-mortgage</loc>
-    <lastmod>2024-03-20</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bluebirdmortgage.com/apply</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://bluebirdmortgage.com/loans/new-construction</loc>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bluebirdmortgage.com/loans/refinance</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bluebirdmortgage.com/loans/down-payment-assistance</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bluebirdmortgage.com/calculator</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bluebirdmortgage.com/contact</loc>
-    <lastmod>2024-03-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bluebirdmortgage.com/about</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://bluebirdmortgage.com/info/about-bluebird</loc>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bluebirdmortgage.com/privacy</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://bluebirdmortgage.com/info/first-time-homebuyer</loc>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bluebirdmortgage.com/terms</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://bluebirdmortgage.com/info/trust-bluebird</loc>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
 </urlset> 

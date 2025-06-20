@@ -31,9 +31,16 @@ export default function LoginPage() {
     }
 
     try {
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3001/api/auth/login'
-        : '/api/auth/login';
+      const getApiUrl = () => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
+          // Use local API server for local development (localhost or local IP)
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/auth/login`;
+        }
+        // Use relative path for production
+        return '/api/auth/login';
+      };
+      const apiUrl = getApiUrl();
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {

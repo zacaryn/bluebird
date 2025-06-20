@@ -7,6 +7,9 @@
     "dev": "concurrently \"next dev\" \"node server.js\"",
     "build": "next build",
     "start": "concurrently \"next start\" \"node server.js\"",
+    "start:frontend": "next start",
+    "start:backend": "node server.js",
+    "start:prod-test": "concurrently \"next start\" \"cd services/bluebirdmortgage && npm start\"",
     "lint": "next lint"
   },
   "dependencies": {

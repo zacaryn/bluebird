@@ -21,7 +21,15 @@ const PORT = process.env.PORT || 3001;
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://10.0.0.53:3000',
+    'https://bluebirdmortgage.com',
+    'https://www.bluebirdmortgage.com'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Simple rate limiting middleware
@@ -329,8 +337,11 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`AWS Service running in ${isProduction ? 'production' : 'development'} mode on port ${PORT}`);
+  console.log(`Server accessible at:`);
+  console.log(`  - http://localhost:${PORT}`);
+  console.log(`  - http://10.0.0.53:${PORT} (or your local IP)`);
 });
 
 export default app; 

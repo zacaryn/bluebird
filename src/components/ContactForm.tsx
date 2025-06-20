@@ -14,6 +14,7 @@ type FormData = {
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [error, setError] = useState<string>('')
   
   const {
     register,
@@ -24,13 +25,32 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
+    setError('')
     try {
-      // TODO: Implement form submission to your backend
-      console.log('Form data:', data)
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          loanType: data.loanType
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit inquiry');
+      }
+
       setSubmitSuccess(true)
       reset()
-    } catch (error) {
-      console.error('Error submitting form:', error)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred while submitting your message')
+      setSubmitSuccess(false)
     } finally {
       setIsSubmitting(false)
     }
@@ -143,6 +163,23 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {error && (
+        <div className="rounded-md bg-red-50 p-4">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-red-800">
+                {error}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {submitSuccess && (
         <div className="rounded-md bg-green-50 p-4">
           <div className="flex">
@@ -170,5 +207,5 @@ export default function ContactForm() {
         </button>
       </div>
     </form>
-  )
+  );
 } 

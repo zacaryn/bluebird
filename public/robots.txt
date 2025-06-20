@@ -2,5 +2,19 @@
 User-agent: *
 Allow: /
 
+# Block admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.*
+
+# Allow important directories
+Allow: /images/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+
 # Sitemap location
-Sitemap: https://bluebirdmortgage.com/sitemap.xml 
+Sitemap: https://bluebirdmortgage.com/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1 

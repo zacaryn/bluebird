@@ -31,7 +31,10 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const apiUrl = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3001/api/auth/login'
+        : '/api/auth/login';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,11 +56,17 @@ export default function LoginPage() {
         setPassword('');
         setNewPassword('');
         setConfirmPassword('');
+      } else if (data.success && data.token) {
+        // Handle successful password change
+        localStorage.setItem('auth-token', data.token);
+        router.push('/admin/inquiries');
       } else if (data.error) {
         setError(data.error);
         // Clear password on error
         setPassword('');
       } else if (data.token) {
+        // Store token in localStorage
+        localStorage.setItem('auth-token', data.token);
         router.push('/admin/inquiries');
       }
     } catch (err: any) {

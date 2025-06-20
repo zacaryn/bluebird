@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { FaEnvelope, FaPhone, FaTrash, FaSpinner, FaChevronDown, FaChevronUp, FaFilter, FaHome, FaExclamationCircle } from 'react-icons/fa';
@@ -130,10 +130,24 @@ export default function AdminInquiries() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
-  const fetchInquiries = async () => {
+  const fetchInquiries = useCallback(async () => {
     try {
       setError('');
-      const response = await fetch('/api/inquiries');
+      const apiUrl = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3001/api/inquiries'
+        : '/api/inquiries';
+      const token = localStorage.getItem('auth-token');
+      
+      if (!token) {
+        router.push('/admin/login');
+        return;
+      }
+
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       
       if (response.status === 401) {
         router.push('/admin/login');
@@ -157,11 +171,11 @@ export default function AdminInquiries() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     fetchInquiries();
-  }, []);
+  }, [fetchInquiries]);
 
   const deleteInquiry = async (id: string) => {
     if (!confirm('Are you sure you want to delete this inquiry?')) {
@@ -172,8 +186,21 @@ export default function AdminInquiries() {
       setError('');
       setDeletingId(id);
 
-      const response = await fetch(`/api/inquiries/${id}`, {
-        method: 'DELETE'
+      const apiUrl = window.location.hostname === 'localhost' 
+        ? `http://localhost:3001/api/inquiries/${id}`
+        : `/api/inquiries/${id}`;
+      const token = localStorage.getItem('auth-token');
+      
+      if (!token) {
+        router.push('/admin/login');
+        return;
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       if (response.status === 401) {
@@ -199,10 +226,21 @@ export default function AdminInquiries() {
     try {
       setError('');
 
-      const response = await fetch(`/api/inquiries/${id}`, {
+      const apiUrl = window.location.hostname === 'localhost' 
+        ? `http://localhost:3001/api/inquiries/${id}`
+        : `/api/inquiries/${id}`;
+      const token = localStorage.getItem('auth-token');
+      
+      if (!token) {
+        router.push('/admin/login');
+        return;
+      }
+
+      const response = await fetch(apiUrl, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ isRead: true })
       });

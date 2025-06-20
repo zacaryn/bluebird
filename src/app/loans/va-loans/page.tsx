@@ -29,7 +29,7 @@ const breadcrumbItems = [
 
 export const metadata: Metadata = {
   title: 'VA Home Loans Colorado Springs | Zero Down Payment | David Jeffrey NMLS# 2269251',
-  description: 'Expert VA home loan services in Colorado Springs. No down payment required, competitive rates, and flexible requirements for veterans & active duty military. Call David Jeffrey at 678-858-0745.',
+  description: 'Expert VA home loan services in Colorado Springs. No down payment required, competitive rates, and flexible requirements for veterans & active duty military. Call David Jeffrey at 719-428-1038.',
   keywords: 'VA loans Colorado Springs, VA home loans, veteran loans, military loans, zero down payment, VA mortgage, home loans, David Jeffrey, NMLS 2269251',
   openGraph: {
     title: 'VA Home Loans Colorado Springs | Bluebird Mortgage',
@@ -110,7 +110,7 @@ const vaLoansSchema = {
         "@type": "LocalBusiness",
         "name": "Bluebird Mortgage",
         "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-678-858-0745",
+        "telephone": "+1-719-428-1038",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Colorado Springs",

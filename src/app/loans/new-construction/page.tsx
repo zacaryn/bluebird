@@ -58,7 +58,7 @@ const newConstructionSchema = {
         "@type": "LocalBusiness",
         "name": "Bluebird Mortgage",
         "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-678-858-0745",
+        "telephone": "+1-719-428-1038",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Colorado Springs",

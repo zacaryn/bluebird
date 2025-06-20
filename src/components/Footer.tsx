@@ -31,7 +31,7 @@ export default function Footer() {
             <div className="text-sm text-gray-300">
               <p>NMLS# 2269251</p>
               <p>
-                <a href="tel:678-858-0745" className="hover:text-white">678-858-0745</a>
+                <a href="tel:719-428-1038" className="hover:text-white">719-428-1038</a>
               </p>
               <p>Monday - Friday: 8am - 7pm</p>
               <p>Saturday & Sunday: By appointment only</p>

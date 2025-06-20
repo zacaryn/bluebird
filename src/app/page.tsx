@@ -128,7 +128,7 @@ const homepageSchema = {
           "name": "How can I get started with my mortgage application?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can get started by calling David Jeffrey at 678-858-0745, filling out our online contact form, or using our mortgage calculator to estimate your payments. We offer free consultations to discuss your options."
+            "text": "You can get started by calling David Jeffrey at 719-428-1038, filling out our online contact form, or using our mortgage calculator to estimate your payments. We offer free consultations to discuss your options."
           }
         }
       ]
@@ -169,11 +169,11 @@ export default function Home() {
               <div className="text-white/90 text-sm font-medium mb-1">
                 Call David Jeffrey
               </div>
-              <a href="tel:678-858-0745" className="inline-flex items-center space-x-2 text-white font-semibold hover:text-gray-200 transition-colors">
+              <a href="tel:719-428-1038" className="inline-flex items-center space-x-2 text-white font-semibold hover:text-gray-200 transition-colors">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>678-858-0745</span>
+                <span>719-428-1038</span>
               </a>
             </div>
           </div>

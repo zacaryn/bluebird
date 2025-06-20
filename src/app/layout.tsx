@@ -103,7 +103,7 @@ const jsonLdSchema = {
       ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-678-858-0745",
+        "telephone": "+1-719-428-1038",
         "contactType": "customer service",
         "areaServed": ["US", "Colorado", "Colorado Springs"],
         "availableLanguage": ["English"],
@@ -130,7 +130,7 @@ const jsonLdSchema = {
         "https://bluebirdmortgage.com/images/logo.png"
       ],
       "url": "https://bluebirdmortgage.com/",
-      "telephone": "+1-678-858-0745",
+      "telephone": "+1-719-428-1038",
       "email": "david@bluebirdmortgage.com",
       "address": {
         "@type": "PostalAddress",

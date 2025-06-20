@@ -133,9 +133,16 @@ export default function AdminInquiries() {
   const fetchInquiries = useCallback(async () => {
     try {
       setError('');
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3001/api/inquiries'
-        : '/api/inquiries';
+      const getApiUrl = () => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
+          // Use local API server for local development (localhost or local IP)
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries`;
+        }
+        // Use relative path for production
+        return '/api/inquiries';
+      };
+      const apiUrl = getApiUrl();
       const token = localStorage.getItem('auth-token');
       
       if (!token) {
@@ -186,9 +193,16 @@ export default function AdminInquiries() {
       setError('');
       setDeletingId(id);
 
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? `http://localhost:3001/api/inquiries/${id}`
-        : `/api/inquiries/${id}`;
+      const getApiUrl = (id: string) => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
+          // Use local API server for local development (localhost or local IP)
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries/${id}`;
+        }
+        // Use relative path for production
+        return `/api/inquiries/${id}`;
+      };
+      const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
       
       if (!token) {
@@ -226,9 +240,16 @@ export default function AdminInquiries() {
     try {
       setError('');
 
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? `http://localhost:3001/api/inquiries/${id}`
-        : `/api/inquiries/${id}`;
+      const getApiUrl = (id: string) => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
+          // Use local API server for local development (localhost or local IP)
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries/${id}`;
+        }
+        // Use relative path for production
+        return `/api/inquiries/${id}`;
+      };
+      const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
       
       if (!token) {

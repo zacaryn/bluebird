@@ -36,9 +36,9 @@ export default function Contact() {
                     </svg>
                   </dt>
                   <dd>
-                                    <a className="hover:text-[#00659C]" href="tel:678-858-0745">
-                  678-858-0745
-                    </a>
+                                                    <a className="hover:text-[#00659C]" href="tel:719-428-1038">
+                  719-428-1038
+                </a>
                   </dd>
                 </div>
                 <div className="flex gap-x-4">

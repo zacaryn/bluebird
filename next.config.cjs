@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export for deployment
+  output: 'export',
+  
   // Environment variables
   env: {
     NEXT_PUBLIC_SITE_URL: 'https://bluebirdmortgage.com',

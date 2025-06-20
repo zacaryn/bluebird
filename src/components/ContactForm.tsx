@@ -27,7 +27,10 @@ export default function ContactForm() {
     setIsSubmitting(true)
     setError('')
     try {
-      const response = await fetch('/api/inquiries', {
+      const apiUrl = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3001/api/inquiries'
+        : '/api/inquiries';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -19,6 +19,10 @@
 
 # production
 /build
+/services/
+/services/bluebirdmortgage/node_modules
+/services/bluebirdmortgage/package-lock.json
+/services/bluebirdmortgage/package.json
 
 # misc
 .DS_Store

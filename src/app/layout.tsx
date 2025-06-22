@@ -26,22 +26,25 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://bluebirdmortgage.com",
     siteName: "Bluebird Mortgage",
-    title: "Bluebird Mortgage | Colorado Springs Mortgage Lender | David Jeffrey",
-    description: "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
+    title: "Bluebird Mortgage",
+    description: "Colorado Springs Mortgage Lender | David Jeffrey NMLS# 2269251 | Expert VA loans, FHA loans, conventional mortgages, and refinancing services.",
     images: [
       {
         url: "/images/bluebird-mortgage-og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Bluebird Mortgage - Colorado Springs Mortgage Lender",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bluebird Mortgage | Colorado Springs Mortgage Lender",
-    description: "Expert mortgage services in Colorado Springs. VA loans, FHA loans, conventional mortgages, and refinancing with David Jeffrey NMLS# 2269251.",
+    title: "Bluebird Mortgage",
+    description: "Colorado Springs Mortgage Lender | David Jeffrey NMLS# 2269251 | Expert VA loans, FHA loans, conventional mortgages, and refinancing services.",
     images: ["/images/bluebird-mortgage-og-image.jpg"],
+    creator: "@bluebirdmtg",
+    site: "@bluebirdmtg",
   },
   robots: {
     index: true,
@@ -84,6 +87,7 @@ const jsonLdSchema = {
       "@type": "Organization",
       "@id": "https://bluebirdmortgage.com/#organization",
       "name": "Bluebird Mortgage",
+      "legalName": "Bluebird Mortgage LLC",
       "url": "https://bluebirdmortgage.com/",
       "logo": {
         "@type": "ImageObject",
@@ -118,11 +122,30 @@ const jsonLdSchema = {
         "@type": "Person",
         "name": "David Jeffrey",
         "jobTitle": "Licensed Mortgage Loan Officer",
-        "description": "NMLS# 2269251"
-      }
+        "description": "NMLS# 2269251",
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Professional License",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Nationwide Multistate Licensing System",
+            "alternateName": "NMLS"
+          },
+          "identifier": "2269251"
+        }
+      },
+      "naics": "522310",
+      "knowsAbout": [
+        "Mortgage Lending",
+        "VA Loans", 
+        "FHA Loans",
+        "Conventional Loans",
+        "Refinancing",
+        "Real Estate Finance"
+      ]
     },
     {
-      "@type": "LocalBusiness",
+      "@type": "FinancialService",
       "@id": "https://bluebirdmortgage.com/#localbusiness",
       "name": "Bluebird Mortgage",
       "image": [
@@ -134,10 +157,10 @@ const jsonLdSchema = {
       "email": "david@bluebirdmortgage.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Colorado Springs Area",
+        "streetAddress": "1347 N Prospect St",
         "addressLocality": "Colorado Springs",
         "addressRegion": "Colorado",
-        "postalCode": "80901",
+        "postalCode": "80903",
         "addressCountry": "US"
       },
       "geo": {
@@ -163,6 +186,7 @@ const jsonLdSchema = {
       "priceRange": "Free consultation",
       "currenciesAccepted": "USD",
       "description": "Bluebird Mortgage specializes in making the mortgage process simple and straightforward in Colorado Springs. Expert guidance for VA loans, FHA loans, conventional loans, refinancing, and first-time homebuyers.",
+      "feesAndCommissionsSpecification": "Free mortgage consultation and competitive rates. No upfront fees for qualified borrowers. All fees disclosed upfront in accordance with TRID requirements.",
       "areaServed": [
         {
           "@type": "Place",
@@ -177,68 +201,75 @@ const jsonLdSchema = {
           "name": "Colorado"
         }
       ],
-      "serviceType": "Mortgage Services",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Mortgage Loan Services",
         "itemListElement": [
           {
             "@type": "Offer",
+            "name": "VA Home Loans",
             "itemOffered": {
-              "@type": "Service",
+              "@type": "MortgageLoan",
               "name": "VA Loans",
-              "description": "Veterans Affairs home loans with no down payment and competitive rates"
+              "loanType": "VA Loan",
+              "description": "Veterans Affairs home loans with no down payment and competitive rates for qualified veterans and service members",
+              "currency": "USD"
             }
           },
           {
-            "@type": "Offer", 
+            "@type": "Offer",
+            "name": "FHA Home Loans", 
             "itemOffered": {
-              "@type": "Service",
+              "@type": "MortgageLoan",
               "name": "FHA Loans",
-              "description": "Federal Housing Administration loans with low down payment options"
+              "loanType": "FHA Loan",
+              "description": "Federal Housing Administration loans with low down payment options for first-time and repeat homebuyers",
+              "currency": "USD"
             }
           },
           {
             "@type": "Offer",
+            "name": "Conventional Home Loans",
             "itemOffered": {
-              "@type": "Service", 
+              "@type": "MortgageLoan", 
               "name": "Conventional Loans",
-              "description": "Traditional mortgage loans with flexible terms and competitive rates"
+              "loanType": "Conventional Loan",
+              "description": "Traditional mortgage loans with flexible terms and competitive rates for qualified borrowers",
+              "currency": "USD"
             }
           },
           {
             "@type": "Offer",
+            "name": "Mortgage Refinancing Services",
             "itemOffered": {
-              "@type": "Service",
+              "@type": "FinancialProduct",
               "name": "Refinancing",
-              "description": "Mortgage refinancing to lower rates or access home equity"
+              "description": "Mortgage refinancing to lower rates, reduce payments, or access home equity",
+              "category": "Mortgage Refinancing"
             }
           }
         ]
       },
-      "sameAs": [
-        "https://www.facebook.com/bluebirdmtg/"
-      ]
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://bluebirdmortgage.com/#service",
-      "name": "Mortgage Lending Services",
-      "provider": {
-        "@id": "https://bluebirdmortgage.com/#localbusiness"
-      },
-      "areaServed": [
-        {
-          "@type": "Place",
-          "name": "Colorado Springs, CO"
-        },
-        {
-          "@type": "Place",
-          "name": "El Paso County, CO"
+      "hasCertification": {
+        "@type": "Certification",
+        "name": "NMLS Licensed Mortgage Lender",
+        "issuedBy": {
+          "@type": "Organization",
+          "name": "Nationwide Multistate Licensing System"
         }
-      ],
-      "serviceType": "Financial Services",
-      "category": "Mortgage Lender"
+      },
+      "serviceType": "Mortgage Lending",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "12",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": [
+        "https://www.facebook.com/bluebirdmtg/",
+        "https://g.co/kgs/kRVys2n"
+      ]
     }
   ]
 };
@@ -258,6 +289,29 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLdSchema),
           }}
         />
+        
+        {/* Enhanced Social Media Meta Tags */}
+        <meta property="og:image:secure_url" content="https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta name="twitter:image:alt" content="Bluebird Mortgage - Colorado Springs Mortgage Lender" />
+        
+        {/* Discord/Embed specific */}
+        <meta name="theme-color" content="#1e40af" />
+        <meta name="msapplication-TileColor" content="#1e40af" />
+        
+        {/* Additional link preview optimization */}
+        <meta property="og:brand" content="Bluebird Mortgage" />
+        <meta property="og:site_name" content="Bluebird Mortgage" />
+        <meta property="business:contact_data:locality" content="Colorado Springs" />
+        <meta property="business:contact_data:region" content="Colorado" />
+        <meta property="business:contact_data:phone_number" content="+1-719-428-1038" />
+        
+        {/* Platform-specific optimizations */}
+        <meta name="apple-mobile-web-app-title" content="Bluebird Mortgage" />
+        <meta name="application-name" content="Bluebird Mortgage" />
+        
         <link rel="canonical" href="https://bluebirdmortgage.com" />
         <meta name="geo.region" content="US-CO" />
         <meta name="geo.placename" content="Colorado Springs" />

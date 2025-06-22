@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import { FaEnvelope, FaPhone, FaTrash, FaSpinner, FaChevronDown, FaChevronUp, FaFilter, FaHome, FaExclamationCircle, FaDollarSign, FaClock } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaTrash, FaSpinner, FaChevronDown, FaChevronUp, FaFilter, FaHome, FaExclamationCircle, FaDollarSign, FaClock, FaArrowLeft, FaSignOutAlt } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Lead } from '@/types';
+import { useAdmin } from '@/contexts/AdminContext';
 
 interface LeadItemProps {
   lead: Lead;
@@ -209,66 +211,31 @@ const LeadItem = ({ lead, onDelete, onMarkAsRead, isDeleting, isExpanded, onTogg
 
 export default function AdminLeads() {
   const router = useRouter();
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const { data, loading, error, fetchLeads, updateLead, removeLead, clearError } = useAdmin();
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
-  const fetchLeads = useCallback(async () => {
-    try {
-      setError('');
-      const getApiUrl = () => {
-        const hostname = window.location.hostname;
-        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
-          // Use local API server for local development (localhost or local IP)
-          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads`;
-        }
-        // Use relative path for production
-        return '/api/leads';
-      };
-      const apiUrl = getApiUrl();
-      const token = localStorage.getItem('auth-token');
-      
-      if (!token) {
-        router.push('/admin/login');
-        return;
-      }
-
-      const response = await fetch(apiUrl, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
-      if (response.status === 401) {
-        router.push('/admin/login');
-        return;
-      }
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch leads');
-      }
-
-      const data = await response.json();
-      
-      // Sort by date (newest first)
-      const sortedLeads = (data.data || []).sort((a: Lead, b: Lead) => 
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-      
-      setLeads(sortedLeads);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setLoading(false);
-    }
-  }, [router]);
-
   useEffect(() => {
+    // Check auth and fetch data
+    const token = localStorage.getItem('auth-token');
+    if (!token) {
+      router.push('/admin/login');
+      return;
+    }
+    
+    // Fetch leads using context (will use cache if available)
     fetchLeads();
-  }, [fetchLeads]);
+  }, [router, fetchLeads]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth-token');
+    router.push('/admin/login');
+  };
+
+  const handleRefresh = () => {
+    fetchLeads(true); // Force refresh
+  };
 
   const deleteLead = async (id: string) => {
     if (!confirm('Are you sure you want to delete this lead?')) {
@@ -276,18 +243,16 @@ export default function AdminLeads() {
     }
 
     try {
-      setError('');
       setDeletingId(id);
 
       const getApiUrl = (id: string) => {
         const hostname = window.location.hostname;
         if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
-          // Use local API server for local development (localhost or local IP)
           return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads/${id}`;
         }
-        // Use relative path for production
         return `/api/leads/${id}`;
       };
+      
       const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
       
@@ -309,14 +274,17 @@ export default function AdminLeads() {
       }
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Failed to delete lead');
+        const responseData = await response.json();
+        throw new Error(responseData.error || 'Failed to delete lead');
       }
 
-      await fetchLeads();
+      // Optimistically remove from cache
+      removeLead(id);
       setExpandedId(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.error('Error deleting lead:', err);
+      // Refresh data on error
+      fetchLeads(true);
     } finally {
       setDeletingId(null);
     }
@@ -324,17 +292,14 @@ export default function AdminLeads() {
 
   const markAsRead = async (id: string) => {
     try {
-      setError('');
-
       const getApiUrl = (id: string) => {
         const hostname = window.location.hostname;
         if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
-          // Use local API server for local development (localhost or local IP)
           return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads/${id}`;
         }
-        // Use relative path for production
         return `/api/leads/${id}`;
       };
+      
       const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
       
@@ -342,6 +307,9 @@ export default function AdminLeads() {
         router.push('/admin/login');
         return;
       }
+
+      // Optimistically update
+      updateLead(id, { isRead: true });
 
       const response = await fetch(apiUrl, {
         method: 'PATCH',
@@ -358,17 +326,19 @@ export default function AdminLeads() {
       }
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Failed to mark lead as read');
+        // Revert optimistic update on error
+        updateLead(id, { isRead: false });
+        const responseData = await response.json();
+        throw new Error(responseData.error || 'Failed to mark lead as read');
       }
-
-      await fetchLeads();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.error('Error marking lead as read:', err);
+      // Refresh data on error
+      fetchLeads(true);
     }
   };
 
-  const filteredLeads = leads.filter(lead => 
+  const filteredLeads = data.leads.filter(lead => 
     filter === 'all' ? true : lead.loanType === filter
   );
 
@@ -383,49 +353,81 @@ export default function AdminLeads() {
     { id: 'not-sure', label: 'Not Sure', color: 'gray' }
   ];
 
-  if (loading) {
+  if (loading.leads) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center">
-            <FaSpinner className="animate-spin h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-gray-600">Loading leads...</span>
-          </div>
-        </div>
+      <div className="flex justify-center items-center py-12">
+        <FaSpinner className="animate-spin h-8 w-8 text-white" />
+        <span className="ml-2 text-white">Loading leads...</span>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow">
+    <div>
+      {/* Header */}
+      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+                <div className="flex items-center mb-2">
+                  <Link
+                    href="/admin"
+                    className="inline-flex items-center text-sm text-white/90 hover:text-white mr-4"
+                  >
+                    <FaArrowLeft className="mr-2" />
+                    Back to Dashboard
+                  </Link>
+                </div>
+                <div className="flex items-center">
+                  <Image 
+                    src="/images/logo.png" 
+                    alt="Bluebird Mortgage" 
+                    width={160} 
+                    height={40} 
+                    className="h-10 w-auto mr-4 brightness-0 invert"
+                  />
+                  <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
+                </div>
                 {/* Navigation Tabs */}
                 <div className="mt-4 flex space-x-1">
                   <Link
                     href="/admin/inquiries"
-                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="bg-white/10 text-white/90 hover:bg-white/20 px-4 py-2 rounded-md text-sm font-medium transition-colors"
                   >
                     Contact Inquiries
                   </Link>
                   <Link
                     href="/admin/leads"
-                    className="bg-[#00659C] text-white px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-white/20 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
                     Get Started Leads
                   </Link>
                 </div>
               </div>
-              <button
-                onClick={fetchLeads}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#00659C] hover:bg-[#005483] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00659C] transition-colors"
-              >
-                Refresh
-              </button>
+              <div className="flex items-center space-x-4">
+                <Link
+                  href="/"
+                  target="_blank"
+                  className="inline-flex items-center px-3 py-2 border border-white/30 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  <FaHome className="mr-2" />
+                  View Site
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors"
+                >
+                  <FaSignOutAlt className="mr-2" />
+                  Logout
+                </button>
+                <button
+                  onClick={handleRefresh}
+                  className="inline-flex items-center px-4 py-2 border border-white/30 text-sm font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  Refresh
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -433,10 +435,10 @@ export default function AdminLeads() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
-          <div className="mb-4 rounded-md bg-red-50 p-4">
+          <div className="mb-4 rounded-md bg-red-100 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                <FaExclamationCircle className="h-5 w-5 text-red-400" />
+                <FaExclamationCircle className="h-5 w-5 text-red-600" />
               </div>
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-red-800">{error}</h3>
@@ -452,8 +454,8 @@ export default function AdminLeads() {
               onClick={() => setFilter(type.id)}
               className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 filter === type.id
-                  ? 'bg-[#00659C] text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-white text-[#00659C]'
+                  : 'bg-white/20 text-white hover:bg-white/30'
               }`}
             >
               {type.label}
@@ -461,7 +463,7 @@ export default function AdminLeads() {
           ))}
         </div>
 
-        <div className="bg-white shadow overflow-hidden sm:rounded-md">
+        <div className="bg-white shadow-lg overflow-hidden sm:rounded-md">
           {filteredLeads.length === 0 ? (
             <div className="text-center py-12">
               <FaHome className="mx-auto h-12 w-12 text-gray-400" />

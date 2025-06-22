@@ -17,6 +17,33 @@ export interface InquiryInput {
   loanType?: 'fha' | 'va' | 'conventional' | 'reverse' | 'other' | null;
 }
 
+export interface Lead {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  loanType: 'conventional' | 'fha' | 'va' | 'refinance' | 'new-construction' | 'reverse-mortgage' | 'not-sure';
+  propertyValue?: string;
+  downPayment?: string;
+  creditScore?: 'excellent' | 'good' | 'fair' | 'poor' | 'unknown';
+  timeframe?: 'immediately' | 'soon' | 'planning' | 'exploring';
+  createdAt: string;
+  isRead?: boolean;
+}
+
+export interface LeadInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  loanType: 'conventional' | 'fha' | 'va' | 'refinance' | 'new-construction' | 'reverse-mortgage' | 'not-sure';
+  propertyValue?: string;
+  downPayment?: string;
+  creditScore?: 'excellent' | 'good' | 'fair' | 'poor' | 'unknown';
+  timeframe?: 'immediately' | 'soon' | 'planning' | 'exploring';
+}
+
 export interface ApiResponse<T = any> {
   success: boolean;
   data?: T;

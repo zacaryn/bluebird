@@ -37,12 +37,18 @@ export const metadata: Metadata = {
     description: "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
     images: [
       {
-        url: "/images/bluebird-mortgage-colorado-springs.jpg",
+        url: "/images/bluebird-mortgage-og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Bluebird Mortgage - Expert Mortgage Lender in Colorado Springs",
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bluebird Mortgage | Colorado Springs Mortgage Lender | David Jeffrey',
+    description: 'Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.',
+    images: ['/images/bluebird-mortgage-og-image.jpg'],
   },
 };
 
@@ -71,8 +77,8 @@ const homepageSchema = {
       "@type": "ImageObject",
       "@id": "https://bluebirdmortgage.com/#primaryimage",
       "inLanguage": "en-US",
-      "url": "https://bluebirdmortgage.com/images/bluebird-mortgage-colorado-springs.jpg",
-      "contentUrl": "https://bluebirdmortgage.com/images/bluebird-mortgage-colorado-springs.jpg",
+      "url": "https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg",
+      "contentUrl": "https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg",
       "width": 1200,
       "height": 630,
       "caption": "Bluebird Mortgage - Expert Mortgage Lender in Colorado Springs"

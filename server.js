@@ -225,7 +225,7 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // Import our service
-import { InquiriesDB } from './src/lib/aws/db-service.js';
+import { InquiriesDB, LeadsDB } from './src/lib/aws/db-service.js';
 
 // API endpoint to get inquiries (protected for admin)
 app.get('/api/inquiries', verifyToken, async (req, res) => {
@@ -317,6 +317,101 @@ app.post('/api/inquiries', async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Failed to submit inquiry',
+      details: error.message
+    });
+  }
+});
+
+// API endpoint to get leads (protected for admin)
+app.get('/api/leads', verifyToken, async (req, res) => {
+  try {
+    const leads = await LeadsDB.getAll();
+    return res.json({
+      success: true,
+      data: leads
+    });
+  } catch (error) {
+    console.error('[Admin] Error fetching leads:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to fetch leads',
+      details: error.message
+    });
+  }
+});
+
+// API endpoint to mark lead as read (protected for admin)
+app.patch('/api/leads/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(`[Admin] Marking lead ${id} as read`);
+
+    const result = await LeadsDB.markAsRead(id);
+    console.log('[Admin] Update result:', result);
+
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        error: 'Lead not found'
+      });
+    }
+
+    return res.json({
+      success: true,
+      message: 'Lead marked as read',
+      data: result
+    });
+
+  } catch (error) {
+    console.error('[Admin] Error marking lead as read:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to mark lead as read',
+      details: error.message
+    });
+  }
+});
+
+// API endpoint to delete a lead (protected for admin)
+app.delete('/api/leads/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(`[Admin] Deleting lead ${id}`);
+
+    await LeadsDB.delete(id);
+    console.log(`[Admin] Successfully deleted lead ${id}`);
+
+    return res.json({
+      success: true,
+      message: 'Lead deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('[Admin] Error deleting lead:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to delete lead',
+      details: error.message
+    });
+  }
+});
+
+// API endpoint to submit a lead (public)
+app.post('/api/leads', async (req, res) => {
+  try {
+    const lead = req.body;
+    const result = await LeadsDB.add(lead);
+
+    return res.json({
+      success: true,
+      message: 'Lead submitted successfully',
+      data: result
+    });
+  } catch (error) {
+    console.error('Error submitting lead:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to submit lead',
       details: error.message
     });
   }

@@ -21,6 +21,7 @@ const documentClient = DynamoDBDocumentClient.from(client);
 
 // Table names
 const INQUIRIES_TABLE = 'bluebirdmortgage-inquiries';
+const LEADS_TABLE = 'bluebirdmortgage-leads';
 
 // Inquiries Database Service
 export const InquiriesDB = {
@@ -126,6 +127,111 @@ export const InquiriesDB = {
   }
 };
 
+// Leads Database Service (following same pattern as InquiriesDB)
+export const LeadsDB = {
+  // Get all leads (requires auth)
+  async getAll() {
+    try {
+      const command = new ScanCommand({
+        TableName: LEADS_TABLE
+      });
+      
+      const result = await documentClient.send(command);
+      return result.Items;
+    } catch (error) {
+      console.error('[DynamoDB] Error getting all leads:', error);
+      throw error;
+    }
+  },
+  
+  // Get a single lead by ID (requires auth)
+  async getById(id) {
+    try {
+      const command = new GetCommand({
+        TableName: LEADS_TABLE,
+        Key: { id }
+      });
+      
+      const result = await documentClient.send(command);
+      return result.Item;
+    } catch (error) {
+      console.error('[DynamoDB] Error getting lead by ID:', error);
+      throw error;
+    }
+  },
+  
+  // Add a new lead (public)
+  async add(lead) {
+    try {
+      const timestamp = new Date().toISOString();
+      const item = {
+        id: uuid(),
+        ...lead,
+        createdAt: timestamp
+      };
+
+      const command = new PutCommand({
+        TableName: LEADS_TABLE,
+        Item: item
+      });
+      
+      await documentClient.send(command);
+      return item;
+    } catch (error) {
+      console.error('[DynamoDB] Error adding lead:', error);
+      throw error;
+    }
+  },
+  
+  // Mark a lead as read (requires auth)
+  async markAsRead(id) {
+    try {
+      const command = new UpdateCommand({
+        TableName: LEADS_TABLE,
+        Key: { id },
+        UpdateExpression: 'SET isRead = :isRead',
+        ExpressionAttributeValues: {
+          ':isRead': true
+        },
+        ReturnValues: 'ALL_NEW'
+      });
+      
+      const result = await documentClient.send(command);
+      return result.Attributes;
+    } catch (error) {
+      console.error('[DynamoDB] Error marking lead as read:', {
+        id,
+        errorMessage: error.message,
+        errorCode: error.code,
+        statusCode: error.$metadata?.httpStatusCode
+      });
+      throw error;
+    }
+  },
+
+  // Delete a lead (requires auth)
+  async delete(id) {
+    try {
+      const command = new DeleteCommand({
+        TableName: LEADS_TABLE,
+        Key: { id }
+      });
+      
+      await documentClient.send(command);
+      return true;
+    } catch (error) {
+      console.error('[DynamoDB] Error deleting lead:', {
+        id,
+        errorMessage: error.message,
+        errorCode: error.code,
+        statusCode: error.$metadata?.httpStatusCode
+      });
+      throw error;
+    }
+  }
+};
+
 export default {
-  InquiriesDB
+  InquiriesDB,
+  LeadsDB
 }; 

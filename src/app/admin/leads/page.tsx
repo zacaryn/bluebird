@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import { FaEnvelope, FaPhone, FaTrash, FaSpinner, FaChevronDown, FaChevronUp, FaFilter, FaHome, FaExclamationCircle } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaTrash, FaSpinner, FaChevronDown, FaChevronUp, FaFilter, FaHome, FaExclamationCircle, FaDollarSign, FaClock } from 'react-icons/fa';
 import Link from 'next/link';
-import type { Inquiry } from '@/types';
+import type { Lead } from '@/types';
 
-interface InquiryItemProps {
-  inquiry: Inquiry;
+interface LeadItemProps {
+  lead: Lead;
   onDelete: (id: string) => void;
   onMarkAsRead: (id: string) => void;
   isDeleting: boolean;
@@ -16,11 +16,53 @@ interface InquiryItemProps {
   onToggle: () => void;
 }
 
-const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, onToggle }: InquiryItemProps) => {
-  const formattedDate = format(new Date(inquiry.createdAt), 'MMM d, h:mm a');
+const LeadItem = ({ lead, onDelete, onMarkAsRead, isDeleting, isExpanded, onToggle }: LeadItemProps) => {
+  const formattedDate = format(new Date(lead.createdAt), 'MMM d, h:mm a');
+
+  // Helper function to format currency values
+  const formatCurrency = (value?: string) => {
+    if (!value || value === '') return null;
+    const numValue = parseInt(value, 10);
+    if (isNaN(numValue)) return null;
+    return numValue.toLocaleString();
+  };
+
+  const getLoanTypeColor = (loanType: string) => {
+    switch (loanType) {
+      case 'fha': return 'bg-blue-100 text-blue-800';
+      case 'va': return 'bg-green-100 text-green-800';
+      case 'conventional': return 'bg-purple-100 text-purple-800';
+      case 'refinance': return 'bg-orange-100 text-orange-800';
+      case 'new-construction': return 'bg-yellow-100 text-yellow-800';
+      case 'reverse-mortgage': return 'bg-pink-100 text-pink-800';
+      case 'not-sure': return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getTimeframeText = (timeframe?: string) => {
+    switch (timeframe) {
+      case 'immediately': return 'Immediately (0-30 days)';
+      case 'soon': return 'Soon (1-3 months)';
+      case 'planning': return 'Planning ahead (3-6 months)';
+      case 'exploring': return 'Just exploring (6+ months)';
+      default: return 'Not specified';
+    }
+  };
+
+  const getCreditScoreText = (creditScore?: string) => {
+    switch (creditScore) {
+      case 'excellent': return 'Excellent (740+)';
+      case 'good': return 'Good (670-739)';
+      case 'fair': return 'Fair (580-669)';
+      case 'poor': return 'Poor (Below 580)';
+      case 'unknown': return 'Not sure';
+      default: return 'Not specified';
+    }
+  };
 
   return (
-    <div className={`${inquiry.isRead ? 'bg-white' : 'bg-blue-50 border-l-4 border-l-[#00659C]'} border-b border-gray-200 transition-all duration-200 hover:bg-gray-50
+    <div className={`${lead.isRead ? 'bg-white' : 'bg-blue-50 border-l-4 border-l-[#00659C]'} border-b border-gray-200 transition-all duration-200 hover:bg-gray-50
       ${isExpanded ? 'shadow-sm' : ''}`}
     >
       {/* Collapsed View */}
@@ -30,16 +72,25 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
       >
         <div className="flex-1 min-w-0 flex items-center">
           <div className="flex-shrink-0 mr-4">
-            <div className={`w-2 h-2 rounded-full ${inquiry.loanType === 'fha' ? 'bg-blue-500' : 
-              inquiry.loanType === 'va' ? 'bg-green-500' : 
-              inquiry.loanType === 'conventional' ? 'bg-purple-500' : 'bg-gray-500'}`} 
+            <div className={`w-2 h-2 rounded-full ${lead.loanType === 'fha' ? 'bg-blue-500' : 
+              lead.loanType === 'va' ? 'bg-green-500' : 
+              lead.loanType === 'conventional' ? 'bg-purple-500' : 
+              lead.loanType === 'refinance' ? 'bg-orange-500' : 'bg-gray-500'}`} 
             />
           </div>
           <div className="truncate">
-            <span className={`font-medium ${inquiry.isRead ? 'text-gray-900' : 'text-gray-900 font-semibold'}`}>{inquiry.name}</span>
+            <span className={`font-medium ${lead.isRead ? 'text-gray-900' : 'text-gray-900 font-semibold'}`}>
+              {lead.firstName} {lead.lastName}
+            </span>
             <span className="mx-2 text-gray-400">·</span>
             <span className="text-sm text-gray-500">{formattedDate}</span>
-            {!inquiry.isRead && (
+            {lead.propertyValue && formatCurrency(lead.propertyValue) && (
+              <>
+                <span className="mx-2 text-gray-400">·</span>
+                <span className="text-sm text-gray-600">${formatCurrency(lead.propertyValue)}</span>
+              </>
+            )}
+            {!lead.isRead && (
               <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-[#00659C] text-white">
                 NEW
               </span>
@@ -47,14 +98,8 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
           </div>
         </div>
         <div className="ml-4 flex items-center space-x-4">
-          <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-            inquiry.loanType === 'fha' ? 'bg-blue-100 text-blue-800' : 
-            inquiry.loanType === 'va' ? 'bg-green-100 text-green-800' : 
-            inquiry.loanType === 'conventional' ? 'bg-purple-100 text-purple-800' : 
-            inquiry.loanType === 'reverse' ? 'bg-orange-100 text-orange-800' :
-            'bg-gray-100 text-gray-800'
-          }`}>
-            {inquiry.loanType?.toUpperCase() || 'GENERAL'}
+          <span className={`text-xs font-medium px-2 py-1 rounded-full ${getLoanTypeColor(lead.loanType)}`}>
+            {lead.loanType?.replace('-', ' ').toUpperCase() || 'GENERAL'}
           </span>
           {isExpanded ? <FaChevronUp className="text-gray-400" /> : <FaChevronDown className="text-gray-400" />}
         </div>
@@ -63,29 +108,69 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
       {/* Expanded View */}
       {isExpanded && (
         <div className="px-4 py-4 bg-gray-50 border-t border-gray-100">
-          <div className="flex space-x-4 text-sm text-gray-500 mb-3">
-            <div className="flex items-center">
-              <FaEnvelope className="mr-2 text-gray-400" />
-              {inquiry.email}
-            </div>
-            {inquiry.phone && (
-              <div className="flex items-center">
-                <FaPhone className="mr-2 text-gray-400" />
-                {inquiry.phone}
+          <div className="grid md:grid-cols-2 gap-6 mb-4">
+            {/* Contact Information */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-3">Contact Information</h4>
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <FaEnvelope className="mr-2 text-gray-400" />
+                  {lead.email}
+                </div>
+                <div className="flex items-center">
+                  <FaPhone className="mr-2 text-gray-400" />
+                  {lead.phone}
+                </div>
               </div>
-            )}
+            </div>
+
+            {/* Loan Details */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-3">Loan Details</h4>
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <FaHome className="mr-2 text-gray-400" />
+                  Loan Type: <span className="ml-1 font-medium">{lead.loanType?.replace('-', ' ')}</span>
+                </div>
+                <div className="flex items-center">
+                  <FaClock className="mr-2 text-gray-400" />
+                  Timeframe: <span className="ml-1">{getTimeframeText(lead.timeframe)}</span>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="bg-white rounded-md p-4 mb-4">
-            <p className="text-gray-700 whitespace-pre-wrap">{inquiry.message}</p>
+
+          {/* Financial Information */}
+          <div className="mb-4">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Financial Information</h4>
+            <div className="grid sm:grid-cols-3 gap-4 text-sm">
+              {lead.propertyValue && formatCurrency(lead.propertyValue) && (
+                <div className="bg-white rounded-md p-3">
+                  <div className="text-gray-500 text-xs">Property Value</div>
+                  <div className="font-semibold text-gray-900">${formatCurrency(lead.propertyValue)}</div>
+                </div>
+              )}
+              {lead.downPayment && formatCurrency(lead.downPayment) && (
+                <div className="bg-white rounded-md p-3">
+                  <div className="text-gray-500 text-xs">Down Payment</div>
+                  <div className="font-semibold text-gray-900">${formatCurrency(lead.downPayment)}</div>
+                </div>
+              )}
+              {lead.creditScore && (
+                <div className="bg-white rounded-md p-3">
+                  <div className="text-gray-500 text-xs">Credit Score</div>
+                  <div className="font-semibold text-gray-900">{getCreditScoreText(lead.creditScore)}</div>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="flex justify-end space-x-3">
-            {!inquiry.isRead && (
+            {!lead.isRead && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  onMarkAsRead(inquiry.id);
+                  onMarkAsRead(lead.id);
                 }}
                 className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md
                   bg-[#00659C] hover:bg-[#005483] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00659C] transition-colors"
@@ -96,7 +181,7 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete(inquiry.id);
+                onDelete(lead.id);
               }}
               disabled={isDeleting}
               className={`inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md
@@ -122,26 +207,26 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
   );
 };
 
-export default function AdminInquiries() {
+export default function AdminLeads() {
   const router = useRouter();
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
-  const fetchInquiries = useCallback(async () => {
+  const fetchLeads = useCallback(async () => {
     try {
       setError('');
       const getApiUrl = () => {
         const hostname = window.location.hostname;
         if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
           // Use local API server for local development (localhost or local IP)
-          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries`;
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads`;
         }
         // Use relative path for production
-        return '/api/inquiries';
+        return '/api/leads';
       };
       const apiUrl = getApiUrl();
       const token = localStorage.getItem('auth-token');
@@ -163,17 +248,17 @@ export default function AdminInquiries() {
       }
 
       if (!response.ok) {
-        throw new Error('Failed to fetch inquiries');
+        throw new Error('Failed to fetch leads');
       }
 
       const data = await response.json();
       
       // Sort by date (newest first)
-      const sortedInquiries = (data.data || []).sort((a: Inquiry, b: Inquiry) => 
+      const sortedLeads = (data.data || []).sort((a: Lead, b: Lead) => 
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
       
-      setInquiries(sortedInquiries);
+      setLeads(sortedLeads);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -182,11 +267,11 @@ export default function AdminInquiries() {
   }, [router]);
 
   useEffect(() => {
-    fetchInquiries();
-  }, [fetchInquiries]);
+    fetchLeads();
+  }, [fetchLeads]);
 
-  const deleteInquiry = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this inquiry?')) {
+  const deleteLead = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this lead?')) {
       return;
     }
 
@@ -198,10 +283,10 @@ export default function AdminInquiries() {
         const hostname = window.location.hostname;
         if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
           // Use local API server for local development (localhost or local IP)
-          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries/${id}`;
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads/${id}`;
         }
         // Use relative path for production
-        return `/api/inquiries/${id}`;
+        return `/api/leads/${id}`;
       };
       const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
@@ -225,10 +310,10 @@ export default function AdminInquiries() {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to delete inquiry');
+        throw new Error(data.error || 'Failed to delete lead');
       }
 
-      await fetchInquiries();
+      await fetchLeads();
       setExpandedId(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -245,10 +330,10 @@ export default function AdminInquiries() {
         const hostname = window.location.hostname;
         if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
           // Use local API server for local development (localhost or local IP)
-          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/inquiries/${id}`;
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads/${id}`;
         }
         // Use relative path for production
-        return `/api/inquiries/${id}`;
+        return `/api/leads/${id}`;
       };
       const apiUrl = getApiUrl(id);
       const token = localStorage.getItem('auth-token');
@@ -274,26 +359,28 @@ export default function AdminInquiries() {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to mark inquiry as read');
+        throw new Error(data.error || 'Failed to mark lead as read');
       }
 
-      await fetchInquiries();
+      await fetchLeads();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
   };
 
-  const filteredInquiries = inquiries.filter(inquiry => 
-    filter === 'all' ? true : inquiry.loanType === filter
+  const filteredLeads = leads.filter(lead => 
+    filter === 'all' ? true : lead.loanType === filter
   );
 
   const loanTypes = [
-    { id: 'all', label: 'All Inquiries', color: 'gray' },
+    { id: 'all', label: 'All Leads', color: 'gray' },
     { id: 'va', label: 'VA Loans', color: 'green' },
     { id: 'fha', label: 'FHA Loans', color: 'blue' },
     { id: 'conventional', label: 'Conventional', color: 'purple' },
-    { id: 'reverse', label: 'Reverse Mortgage', color: 'orange' },
-    { id: 'other', label: 'Other', color: 'gray' }
+    { id: 'refinance', label: 'Refinance', color: 'orange' },
+    { id: 'new-construction', label: 'New Construction', color: 'yellow' },
+    { id: 'reverse-mortgage', label: 'Reverse Mortgage', color: 'pink' },
+    { id: 'not-sure', label: 'Not Sure', color: 'gray' }
   ];
 
   if (loading) {
@@ -302,7 +389,7 @@ export default function AdminInquiries() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center">
             <FaSpinner className="animate-spin h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-gray-600">Loading inquiries...</span>
+            <span className="ml-2 text-gray-600">Loading leads...</span>
           </div>
         </div>
       </div>
@@ -321,20 +408,20 @@ export default function AdminInquiries() {
                 <div className="mt-4 flex space-x-1">
                   <Link
                     href="/admin/inquiries"
-                    className="bg-[#00659C] text-white px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium transition-colors"
                   >
                     Contact Inquiries
                   </Link>
                   <Link
                     href="/admin/leads"
-                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="bg-[#00659C] text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
                     Get Started Leads
                   </Link>
                 </div>
               </div>
               <button
-                onClick={fetchInquiries}
+                onClick={fetchLeads}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#00659C] hover:bg-[#005483] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00659C] transition-colors"
               >
                 Refresh
@@ -375,24 +462,24 @@ export default function AdminInquiries() {
         </div>
 
         <div className="bg-white shadow overflow-hidden sm:rounded-md">
-          {filteredInquiries.length === 0 ? (
+          {filteredLeads.length === 0 ? (
             <div className="text-center py-12">
-              <FaEnvelope className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No inquiries yet</h3>
+              <FaHome className="mx-auto h-12 w-12 text-gray-400" />
+              <h3 className="mt-2 text-sm font-medium text-gray-900">No leads yet</h3>
               <p className="mt-1 text-sm text-gray-500">
-                Contact form submissions will appear here.
+                Get Started form submissions will appear here.
               </p>
             </div>
           ) : (
-            filteredInquiries.map((inquiry) => (
-              <InquiryItem
-                key={inquiry.id}
-                inquiry={inquiry}
-                onDelete={deleteInquiry}
+            filteredLeads.map((lead) => (
+              <LeadItem
+                key={lead.id}
+                lead={lead}
+                onDelete={deleteLead}
                 onMarkAsRead={markAsRead}
-                isDeleting={deletingId === inquiry.id}
-                isExpanded={expandedId === inquiry.id}
-                onToggle={() => setExpandedId(expandedId === inquiry.id ? null : inquiry.id)}
+                isDeleting={deletingId === lead.id}
+                isExpanded={expandedId === lead.id}
+                onToggle={() => setExpandedId(expandedId === lead.id ? null : lead.id)}
               />
             ))
           )}

@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import AdTracking from '@/components/AdTracking';
 import Link from 'next/link';
+import type { LeadInput } from '@/types';
 
 declare global {
   interface Window {
@@ -93,6 +94,8 @@ function GetStartedForm() {
   const [currentStep, setCurrentStep] = useState<Step>('intro');
   const [formData, setFormData] = useState<FormData>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string>('');
   
   // Get UTM parameters and ad source
   const source = searchParams.get('utm_source') || '';
@@ -161,21 +164,75 @@ function GetStartedForm() {
     setCurrentStep(nextStep);
   };
 
-  const handleSubmission = () => {
+  const handleSubmission = async () => {
     if (!validateStep('details')) {
       return;
     }
 
-    // Track form submission
-    if (typeof window !== 'undefined' && window.trackFormSubmission) {
-      window.trackFormSubmission({
-        ...formData,
-        utm_source: source,
-        utm_medium: medium,
-        utm_campaign: campaign,
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      // Helper function to clean currency values
+      const cleanCurrencyValue = (value?: string) => {
+        if (!value) return undefined;
+        return value.replace(/[^\d]/g, ''); // Remove all non-digit characters
+      };
+
+      // Prepare lead data
+      const leadData: LeadInput = {
+        firstName: formData.firstName!,
+        lastName: formData.lastName!,
+        email: formData.email!,
+        phone: formData.phone!,
+        loanType: formData.loanType!,
+        propertyValue: cleanCurrencyValue(formData.propertyValue),
+        downPayment: cleanCurrencyValue(formData.downPayment),
+        creditScore: formData.creditScore as any,
+        timeframe: formData.timeframe as any
+      };
+
+      // Submit to API
+      const getApiUrl = () => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname.startsWith('10.0.0.') || hostname.startsWith('192.168.')) {
+          // Use local API server for local development (localhost or local IP)
+          return `http://${hostname === 'localhost' ? 'localhost' : hostname}:3001/api/leads`;
+        }
+        // Use relative path for production
+        return '/api/leads';
+      };
+
+      const apiUrl = getApiUrl();
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit lead information');
+      }
+
+      // Track form submission
+      if (typeof window !== 'undefined' && window.trackFormSubmission) {
+        window.trackFormSubmission({
+          ...formData,
+          utm_source: source,
+          utm_medium: medium,
+          utm_campaign: campaign,
+        });
+      }
+
+      setCurrentStep('final');
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'An error occurred while submitting your information');
+    } finally {
+      setIsSubmitting(false);
     }
-    setCurrentStep('final');
   };
 
   const formatCurrency = (value: string) => {
@@ -447,11 +504,32 @@ function GetStartedForm() {
           )}
         </div>
 
+        {submitError && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+            {submitError}
+          </div>
+        )}
+
         <button
           onClick={handleSubmission}
-          className="w-full py-4 bg-[#00659C] text-white rounded-lg font-semibold text-lg hover:bg-[#005483] transition-colors"
+          disabled={isSubmitting}
+          className={`w-full py-4 rounded-lg font-semibold text-lg transition-colors ${
+            isSubmitting 
+              ? 'bg-gray-400 cursor-not-allowed text-white' 
+              : 'bg-[#00659C] text-white hover:bg-[#005483]'
+          }`}
         >
-          Get My Personalized Recommendations →
+          {isSubmitting ? (
+            <div className="flex items-center justify-center">
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Submitting...
+            </div>
+          ) : (
+            'Get My Personalized Recommendations →'
+          )}
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import MortgageCalculator from '@/components/MortgageCalculator'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import CollapsibleFAQ from '@/components/CollapsibleFAQ'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -33,6 +34,25 @@ export const metadata: Metadata = {
     canonical: 'https://bluebirdmortgage.com/calculator',
   },
 }
+
+const calculatorFAQs = [
+  {
+    question: "How accurate is the mortgage calculator?",
+    answer: "Our mortgage calculator provides good estimates for monthly payments, but actual payments may vary based on specific loan terms, insurance costs, and property taxes. Contact David Jeffrey for precise quotes tailored to your situation."
+  },
+  {
+    question: "What factors affect my monthly mortgage payment?",
+    answer: "Monthly mortgage payments include principal, interest, property taxes, homeowners insurance, and PMI (if applicable). The loan amount, interest rate, loan term, and down payment amount all impact your monthly payment."
+  },
+  {
+    question: "Should I use a 15-year or 30-year mortgage?",
+    answer: "15-year mortgages have higher monthly payments but lower total interest costs. 30-year mortgages have lower monthly payments but higher total interest. Use our calculator to compare both options and contact us for personalized advice."
+  },
+  {
+    question: "How much should I put down on a house in Colorado Springs?",
+    answer: "Down payment requirements vary by loan type: VA loans can be 0% down, FHA loans require 3.5%, and conventional loans can be as low as 3%. Higher down payments reduce monthly payments and may eliminate PMI."
+  }
+]
 
 const calculatorSchema = {
   "@context": "https://schema.org",
@@ -161,11 +181,6 @@ export default function CalculatorPage() {
       />
       
       <div className="min-h-screen bg-white flex flex-col">
-        {/* Breadcrumbs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Breadcrumbs items={breadcrumbItems} />
-        </div>
-
         {/* Hero Section */}
         <div className="relative bg-[#00659C]">
           <div className="absolute inset-0 h-full w-full">
@@ -190,6 +205,8 @@ export default function CalculatorPage() {
           </div>
         </div>
 
+
+
         {/* Calculator section */}
         <div className="flex-1 flex flex-col">
           <div className="mx-auto max-w-4xl w-full py-8 px-6">
@@ -204,32 +221,8 @@ export default function CalculatorPage() {
                 </div>
               </div>
 
-              {/* Additional Information */}
+              {/* Ready for Real Quote */}
               <div className="space-y-6">
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                    Understanding Your Payment
-                  </h2>
-                  <div className="space-y-3 text-sm text-gray-700">
-                    <div className="flex justify-between">
-                      <span>Principal & Interest:</span>
-                      <span>Loan repayment amount</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Property Taxes:</span>
-                      <span>Varies by location in Colorado Springs</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Homeowners Insurance:</span>
-                      <span>Protects your investment</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>PMI (if applicable):</span>
-                      <span>For loans with less than 20% down</span>
-                    </div>
-                  </div>
-                </div>
-
                 <div className="bg-[#00659C] text-white rounded-lg p-6">
                   <h3 className="text-lg font-semibold mb-3">
                     Ready for a Real Quote?
@@ -252,100 +245,18 @@ export default function CalculatorPage() {
                     </a>
                   </div>
                 </div>
-
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Loan Programs Available
-                  </h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center">
-                      <span className="text-[#00659C] mr-2">•</span>
-                      <span>VA Loans - 0% down for veterans</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-[#00659C] mr-2">•</span>
-                      <span>FHA Loans - 3.5% down payment</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-[#00659C] mr-2">•</span>
-                      <span>Conventional Loans - 3% down</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-[#00659C] mr-2">•</span>
-                      <span>Refinancing - Lower your rate</span>
-                    </div>
-                  </div>
-                  <Link
-                    href="/loans"
-                    className="inline-block mt-4 text-[#00659C] font-semibold text-sm hover:underline"
-                  >
-                    Explore All Loan Programs →
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Calculator FAQ
-              </h2>
-              <p className="text-lg text-gray-600">
-                Common questions about mortgage calculations and payments
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  How accurate is the mortgage calculator?
-                </h3>
-                <p className="text-gray-700">
-                  Our mortgage calculator provides good estimates for monthly payments, but actual payments 
-                  may vary based on specific loan terms, insurance costs, and property taxes. Contact David 
-                  Jeffrey for precise quotes tailored to your situation.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  What factors affect my monthly mortgage payment?
-                </h3>
-                <p className="text-gray-700">
-                  Monthly mortgage payments include principal, interest, property taxes, homeowners insurance, 
-                  and PMI (if applicable). The loan amount, interest rate, loan term, and down payment amount 
-                  all impact your monthly payment.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Should I use a 15-year or 30-year mortgage?
-                </h3>
-                <p className="text-gray-700">
-                  15-year mortgages have higher monthly payments but lower total interest costs. 30-year 
-                  mortgages have lower monthly payments but higher total interest. Use our calculator to 
-                  compare both options and contact us for personalized advice.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  How much should I put down on a house in Colorado Springs?
-                </h3>
-                <p className="text-gray-700">
-                  Down payment requirements vary by loan type: VA loans can be 0% down, FHA loans require 3.5%, 
-                  and conventional loans can be as low as 3%. Higher down payments reduce monthly payments and 
-                  may eliminate PMI.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CollapsibleFAQ
+          title="Calculator FAQ"
+          subtitle="Common questions about mortgage calculations and payments"
+          faqs={calculatorFAQs}
+          defaultExpanded={false}
+        />
       </div>
     </>
   )

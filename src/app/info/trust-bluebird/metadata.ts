@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Why Choose Bluebird Mortgage | Trust David Jeffrey NMLS# 1649074 | Colorado Springs',
-  description: 'Discover why Bluebird Mortgage is the trusted choice for home loans in Colorado Springs. Expert guidance from David Jeffrey NMLS# 1649074, personalized service, competitive rates, and local market expertise since 2020.',
-  keywords: 'why choose Bluebird Mortgage, trust Bluebird Mortgage, Colorado Springs mortgage expert, David Jeffrey NMLS 1649074, reliable mortgage broker, local mortgage company, Colorado Springs home loans',
+  title: 'Why Choose Bluebird Mortgage | Trust David Jeffrey NMLS# 2269251 | Colorado Springs',
+  description: 'Discover why Bluebird Mortgage is the trusted choice for home loans in Colorado Springs. Expert guidance from David Jeffrey NMLS# 2269251, personalized service, competitive rates, and local market expertise since 2020.',
+  keywords: 'why choose Bluebird Mortgage, trust Bluebird Mortgage, Colorado Springs mortgage expert, David Jeffrey NMLS 2269251, reliable mortgage broker, local mortgage company, Colorado Springs home loans',
   openGraph: {
     title: 'Why Choose Bluebird Mortgage | Trust & Expertise | Colorado Springs',
     description: 'Discover why Bluebird Mortgage is the trusted choice for home loans in Colorado Springs. Expert guidance, personalized service, and competitive rates.',

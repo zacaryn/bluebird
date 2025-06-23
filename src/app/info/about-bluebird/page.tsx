@@ -11,7 +11,7 @@ const aboutBluebirdSchema = {
       "@type": "WebPage",
       "@id": "https://bluebirdmortgage.com/info/about-bluebird#webpage",
       "url": "https://bluebirdmortgage.com/info/about-bluebird",
-      "name": "About Bluebird Mortgage | David Jeffrey NMLS# 1649074",
+      "name": "About Bluebird Mortgage | David Jeffrey NMLS# 2269251",
       "isPartOf": {
         "@id": "https://bluebirdmortgage.com/#website"
       },
@@ -54,7 +54,7 @@ const aboutBluebirdSchema = {
       "@id": "https://bluebirdmortgage.com/info/about-bluebird#person",
       "name": "David Jeffrey",
       "jobTitle": "Founding Mortgage Broker",
-      "identifier": "NMLS# 1649074",
+      "identifier": "NMLS# 2269251",
       "worksFor": {
         "@id": "https://bluebirdmortgage.com/#organization"
       },
@@ -164,7 +164,7 @@ export default function AboutBluebirdPage() {
                   <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
                     <Image
                       src="/images/david.png"
-                      alt="David Jeffrey - Founding Mortgage Broker NMLS# 1649074"
+                      alt="David Jeffrey - Founding Mortgage Broker NMLS# 2269251"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -176,7 +176,7 @@ export default function AboutBluebirdPage() {
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">About David Jeffrey, Founding Mortgage Broker</h2>
                   <div className="mb-4">
                     <span className="inline-block bg-[#00659C] text-white px-3 py-1 rounded-full text-sm font-medium">
-                      NMLS# 1649074
+                      NMLS# 2269251
                     </span>
                   </div>
                   <p className="text-lg text-gray-800 leading-relaxed mb-4">

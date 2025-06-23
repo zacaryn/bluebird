@@ -56,7 +56,7 @@ const trustBluebirdSchema = {
       "author": {
         "@type": "Person",
         "name": "David Jeffrey",
-        "identifier": "NMLS# 1649074"
+        "identifier": "NMLS# 2269251"
       },
       "publisher": {
         "@id": "https://bluebirdmortgage.com/#organization"

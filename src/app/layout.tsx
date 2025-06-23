@@ -311,7 +311,18 @@ export default function RootLayout({
         
         {/* Platform-specific optimizations */}
         <meta name="apple-mobile-web-app-title" content="Bluebird Mortgage" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="application-name" content="Bluebird Mortgage" />
+        
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Favicon Links for Better Compatibility */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         <link rel="canonical" href="https://bluebirdmortgage.com" />
         <meta name="geo.region" content="US-CO" />

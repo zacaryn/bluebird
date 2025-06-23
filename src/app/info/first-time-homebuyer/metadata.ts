@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'First-Time Homebuyer Guide Colorado Springs | Programs & Tips | David Jeffrey NMLS# 1649074',
-  description: 'Complete first-time homebuyer guide for Colorado Springs. Learn about FHA loans, down payment assistance, VA loans, and the homebuying process with David Jeffrey NMLS# 1649074. Expert guidance for new homebuyers.',
-  keywords: 'first time homebuyer Colorado Springs, first home buyer guide, FHA loans first time buyers, down payment assistance Colorado, homebuying process, David Jeffrey, NMLS 1649074, Colorado Springs real estate',
+  title: 'First-Time Homebuyer Guide Colorado Springs | Programs & Tips | David Jeffrey NMLS# 2269251',
+  description: 'Complete first-time homebuyer guide for Colorado Springs. Learn about FHA loans, down payment assistance, VA loans, and the homebuying process with David Jeffrey NMLS# 2269251. Expert guidance for new homebuyers.',
+  keywords: 'first time homebuyer Colorado Springs, first home buyer guide, FHA loans first time buyers, down payment assistance Colorado, homebuying process, David Jeffrey, NMLS 2269251, Colorado Springs real estate',
   openGraph: {
     title: 'First-Time Homebuyer Guide Colorado Springs | Programs & Tips | Bluebird Mortgage',
     description: 'Expert guidance for first-time homebuyers in Colorado Springs. Learn about loan programs, down payment assistance, and the homebuying process.',

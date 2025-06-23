@@ -5,9 +5,9 @@ import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Loan Programs Colorado Springs | Home Loans & Refinancing | David Jeffrey NMLS# 1649074',
-  description: 'Comprehensive home loan programs in Colorado Springs including FHA, VA, conventional loans, refinancing, and down payment assistance. Expert guidance from David Jeffrey NMLS# 1649074.',
-  keywords: 'loan programs Colorado Springs, home loans, mortgage types, FHA loans, VA loans, conventional loans, refinancing, down payment assistance, David Jeffrey, NMLS 1649074',
+  title: 'Loan Programs Colorado Springs | Home Loans & Refinancing | David Jeffrey NMLS# 2269251',
+  description: 'Comprehensive home loan programs in Colorado Springs including FHA, VA, conventional loans, refinancing, and down payment assistance. Expert guidance from David Jeffrey NMLS# 2269251.',
+  keywords: 'loan programs Colorado Springs, home loans, mortgage types, FHA loans, VA loans, conventional loans, refinancing, down payment assistance, David Jeffrey, NMLS 2269251',
   openGraph: {
     title: 'Loan Programs Colorado Springs | Home Loans & Refinancing | Bluebird Mortgage',
     description: 'Explore our comprehensive home loan programs including FHA, VA, conventional loans, refinancing, and more in Colorado Springs.',

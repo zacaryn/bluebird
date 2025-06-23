@@ -136,6 +136,38 @@ const homepageSchema = {
             "@type": "Answer",
             "text": "You can get started by calling David Jeffrey at 719-428-1038, filling out our online contact form, or using our mortgage calculator to estimate your payments. We offer free consultations to discuss your options."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Bluebird Mortgage different from other lenders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bluebird Mortgage offers personalized service with direct access to David Jeffrey (NMLS# 2269251), local Colorado Springs expertise, transparent communication, and specialized knowledge in VA loans, FHA loans, and first-time homebuyer programs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are current mortgage rates in Colorado Springs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mortgage rates change daily based on market conditions. Contact David Jeffrey at 719-428-1038 for current rates on VA loans, FHA loans, conventional loans, and refinancing options. Rates vary based on credit score, down payment, and loan program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much house can I afford in Colorado Springs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generally, you can afford a home that costs 2.5-3 times your annual income, though this varies based on credit score, debt, and down payment. Use our mortgage calculator or contact David Jeffrey for a personalized affordability analysis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What documents do I need for a mortgage application?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You'll need recent pay stubs, tax returns, bank statements, employment verification, and identification. For VA loans, you'll also need your Certificate of Eligibility. David Jeffrey will provide a complete document checklist during your consultation."
+          }
         }
       ]
     }
@@ -247,6 +279,98 @@ export default function Home() {
                   </Link>
                 ))}
               </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="bg-gray-50 py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  Frequently Asked Questions
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  Get answers to common questions about mortgage lending in Colorado Springs
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What types of mortgage loans does Bluebird Mortgage offer?
+                  </h3>
+                  <p className="text-gray-700">
+                    Bluebird Mortgage offers VA loans, FHA loans, conventional loans, reverse mortgages, 
+                    new construction loans, refinancing, and down payment assistance programs in Colorado Springs.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    How long does the mortgage approval process take?
+                  </h3>
+                  <p className="text-gray-700">
+                    The mortgage approval process typically takes 30-45 days from application to closing. 
+                    Pre-approval can often be completed within 24-48 hours with proper documentation.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What credit score do I need for a mortgage?
+                  </h3>
+                  <p className="text-gray-700">
+                    Credit score requirements vary by loan type. FHA loans may accept scores as low as 580, 
+                    VA loans are more flexible, and conventional loans typically require 620 or higher. 
+                    Contact David Jeffrey for a personalized assessment.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What makes Bluebird Mortgage different from other lenders?
+                  </h3>
+                  <p className="text-gray-700">
+                    Bluebird Mortgage offers personalized service with direct access to David Jeffrey (NMLS# 2269251), 
+                    local Colorado Springs expertise, transparent communication, and specialized knowledge in VA loans, 
+                    FHA loans, and first-time homebuyer programs.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    How much house can I afford in Colorado Springs?
+                  </h3>
+                  <p className="text-gray-700">
+                    Generally, you can afford a home that costs 2.5-3 times your annual income, though this 
+                    varies based on credit score, debt, and down payment. Use our mortgage calculator or 
+                    contact David Jeffrey for a personalized affordability analysis.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What documents do I need for a mortgage application?
+                  </h3>
+                  <p className="text-gray-700">
+                    You'll need recent pay stubs, tax returns, bank statements, employment verification, and 
+                    identification. For VA loans, you'll also need your Certificate of Eligibility. David Jeffrey 
+                    will provide a complete document checklist during your consultation.
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center mt-12">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center rounded-md bg-[#00659C] px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-[#005483] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00659C]"
+                >
+                  Have More Questions? Contact Us
+                  <ArrowRightIcon className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

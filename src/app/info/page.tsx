@@ -5,9 +5,9 @@ import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Mortgage Information & Resources Colorado Springs | David Jeffrey NMLS# 1649074',
+  title: 'Mortgage Information & Resources Colorado Springs | David Jeffrey NMLS# 2269251',
   description: 'Essential mortgage information and resources for Colorado Springs homebuyers. Learn about the mortgage process, first-time homebuyer programs, and why to choose Bluebird Mortgage.',
-  keywords: 'mortgage information Colorado Springs, homebuyer resources, first-time homebuyer guide, mortgage process, Bluebird Mortgage, David Jeffrey, NMLS 1649074',
+  keywords: 'mortgage information Colorado Springs, homebuyer resources, first-time homebuyer guide, mortgage process, Bluebird Mortgage, David Jeffrey, NMLS 2269251',
   openGraph: {
     title: 'Mortgage Information & Resources Colorado Springs | Bluebird Mortgage',
     description: 'Essential mortgage information and resources to help Colorado Springs homebuyers make informed decisions throughout their homebuying journey.',

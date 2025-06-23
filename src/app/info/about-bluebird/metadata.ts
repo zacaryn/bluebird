@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Bluebird Mortgage | David Jeffrey NMLS# 1649074 | Colorado Springs Mortgage Broker',
-  description: 'Learn about Bluebird Mortgage and owner David Jeffrey NMLS# 1649074. Expert mortgage services in Colorado Springs with personalized solutions, competitive rates, and exceptional customer service since 2020.',
-  keywords: 'about Bluebird Mortgage, David Jeffrey mortgage broker, Colorado Springs mortgage company, NMLS 1649074, mortgage professional Colorado Springs, loan officer biography, mortgage broker experience',
+  title: 'About Bluebird Mortgage | David Jeffrey NMLS# 2269251 | Colorado Springs Mortgage Broker',
+  description: 'Learn about Bluebird Mortgage and owner David Jeffrey NMLS# 2269251. Expert mortgage services in Colorado Springs with personalized solutions, competitive rates, and exceptional customer service since 2020.',
+  keywords: 'about Bluebird Mortgage, David Jeffrey mortgage broker, Colorado Springs mortgage company, NMLS 2269251, mortgage professional Colorado Springs, loan officer biography, mortgage broker experience',
   openGraph: {
-    title: 'About Bluebird Mortgage | David Jeffrey NMLS# 1649074 | Colorado Springs',
+    title: 'About Bluebird Mortgage | David Jeffrey NMLS# 2269251 | Colorado Springs',
     description: 'Meet David Jeffrey and learn about Bluebird Mortgage. Expert mortgage services in Colorado Springs with personalized solutions and competitive rates.',
     type: 'article',
     url: 'https://bluebirdmortgage.com/info/about-bluebird',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Bluebird Mortgage | David Jeffrey NMLS# 1649074',
+    title: 'About Bluebird Mortgage | David Jeffrey NMLS# 2269251',
     description: 'Meet David Jeffrey and learn about Bluebird Mortgage. Expert mortgage services in Colorado Springs.',
     images: ['/images/david.png'],
   },

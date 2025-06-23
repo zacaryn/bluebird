@@ -65,15 +65,15 @@ const InquiryItem = ({ inquiry, onDelete, onMarkAsRead, isDeleting, isExpanded, 
       {/* Expanded View */}
       {isExpanded && (
         <div className="px-4 py-4 bg-gray-50 border-t border-gray-100">
-          <div className="flex space-x-4 text-sm text-gray-500 mb-3">
+          <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-500 mb-3">
             <div className="flex items-center">
-              <FaEnvelope className="mr-2 text-gray-400" />
-              {inquiry.email}
+              <FaEnvelope className="mr-2 text-gray-400 flex-shrink-0" />
+              <span className="break-all">{inquiry.email}</span>
             </div>
             {inquiry.phone && (
               <div className="flex items-center">
-                <FaPhone className="mr-2 text-gray-400" />
-                {inquiry.phone}
+                <FaPhone className="mr-2 text-gray-400 flex-shrink-0" />
+                <span>{inquiry.phone}</span>
               </div>
             )}
           </div>
@@ -280,16 +280,17 @@ export default function AdminInquiries() {
       {/* Header */}
       <div className="bg-white/10 backdrop-blur-sm border-b border-white/20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
-            <div className="flex items-center justify-between">
-              <div>
+          <div className="py-4 sm:py-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+              <div className="min-w-0">
                 <div className="flex items-center mb-2">
                   <Link
                     href="/admin"
                     className="inline-flex items-center text-sm text-white/90 hover:text-white mr-4"
                   >
                     <FaArrowLeft className="mr-2" />
-                    Back to Dashboard
+                    <span className="hidden sm:inline">Back to Dashboard</span>
+                    <span className="sm:hidden">Back</span>
                   </Link>
                 </div>
                 <div className="flex items-center">
@@ -298,45 +299,48 @@ export default function AdminInquiries() {
                     alt="Bluebird Mortgage" 
                     width={160} 
                     height={40} 
-                    className="h-10 w-auto mr-4 brightness-0 invert"
+                    className="h-8 sm:h-10 w-auto mr-3 sm:mr-4 brightness-0 invert"
                   />
-                  <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold text-white">Admin Dashboard</h1>
                 </div>
                 {/* Navigation Tabs */}
-                <div className="mt-4 flex space-x-1">
+                <div className="mt-3 lg:mt-4 flex space-x-1">
                   <Link
                     href="/admin/inquiries"
-                    className="bg-white/20 text-white px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-white/20 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium"
                   >
-                    Contact Inquiries
+                    <span className="hidden sm:inline">Contact Inquiries</span>
+                    <span className="sm:hidden">Inquiries</span>
                   </Link>
                   <Link
                     href="/admin/leads"
-                    className="bg-white/10 text-white/90 hover:bg-white/20 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="bg-white/10 text-white/90 hover:bg-white/20 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors"
                   >
-                    Get Started Leads
+                    <span className="hidden sm:inline">Get Started Leads</span>
+                    <span className="sm:hidden">Leads</span>
                   </Link>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-3">
                 <Link
                   href="/"
                   target="_blank"
-                  className="inline-flex items-center px-3 py-2 border border-white/30 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center justify-center px-3 py-2 border border-white/30 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
                 >
                   <FaHome className="mr-2" />
-                  View Site
+                  <span className="hidden sm:inline">View Site</span>
+                  <span className="sm:hidden">Site</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors"
+                  className="inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors"
                 >
                   <FaSignOutAlt className="mr-2" />
                   Logout
                 </button>
                 <button
                   onClick={handleRefresh}
-                  className="inline-flex items-center px-4 py-2 border border-white/30 text-sm font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center justify-center px-3 py-2 border border-white/30 text-sm font-medium rounded-md text-white bg-white/10 hover:bg-white/20 transition-colors"
                 >
                   Refresh
                 </button>
@@ -360,12 +364,12 @@ export default function AdminInquiries() {
           </div>
         )}
 
-        <div className="mb-6 flex flex-wrap gap-2">
+        <div className="mb-6 flex flex-wrap gap-2 sm:gap-3">
           {loanTypes.map((type) => (
             <button
               key={type.id}
               onClick={() => setFilter(type.id)}
-              className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              className={`inline-flex items-center px-2 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-colors ${
                 filter === type.id
                   ? 'bg-white text-[#00659C]'
                   : 'bg-white/20 text-white hover:bg-white/30'

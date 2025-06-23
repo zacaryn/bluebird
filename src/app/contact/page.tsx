@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import ContactForm from '@/components/ContactForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import CollapsibleFAQ from '@/components/CollapsibleFAQ'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Bluebird Mortgage Colorado Springs | David Jeffrey NMLS# 2269251',
@@ -31,6 +32,33 @@ export const metadata: Metadata = {
     canonical: 'https://bluebirdmortgage.com/contact',
   },
 }
+
+const contactFAQs = [
+  {
+    question: "How can I contact Bluebird Mortgage?",
+    answer: "You can contact Bluebird Mortgage by calling 719-428-1038, emailing david@bluebirdmortgage.com, or filling out our online contact form. We're available Monday-Friday 8am-7pm, and weekends by appointment."
+  },
+  {
+    question: "How quickly does David Jeffrey respond to inquiries?",
+    answer: "David Jeffrey typically responds to phone calls within hours and emails within 24 hours during business days. For urgent mortgage questions, calling 719-428-1038 is the fastest way to reach us."
+  },
+  {
+    question: "Do I need an appointment for a mortgage consultation?",
+    answer: "While appointments are preferred for in-depth consultations, David Jeffrey is available for quick questions during business hours. You can schedule a consultation by calling, emailing, or using our contact form."
+  },
+  {
+    question: "What information should I have ready when contacting Bluebird Mortgage?",
+    answer: "For an initial consultation, have your approximate credit score, monthly income, current debts, down payment amount, and the price range of homes you're considering. This helps David provide more accurate preliminary guidance."
+  },
+  {
+    question: "Can I meet with David Jeffrey in person?",
+    answer: "Yes, David Jeffrey offers in-person consultations in Colorado Springs, virtual meetings, and phone consultations to accommodate your schedule and preferences. Contact us to schedule your preferred meeting type."
+  },
+  {
+    question: "Is there a cost for the initial mortgage consultation?",
+    answer: "No, initial mortgage consultations with David Jeffrey are completely free. There's no obligation and no cost to discuss your mortgage options, get pre-qualified, or ask questions about the homebuying process."
+  }
+]
 
 const contactSchema = {
   "@context": "https://schema.org",
@@ -155,10 +183,7 @@ export default function Contact() {
       />
       
       <div className="bg-white">
-        {/* Breadcrumbs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Breadcrumbs items={breadcrumbItems} />
-        </div>
+
 
         <div className="relative isolate bg-gradient-to-b from-blue-100/20">
           <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
@@ -176,7 +201,10 @@ export default function Contact() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                       </svg>
                     </dt>
-                    <dd>Colorado Springs, CO</dd>
+                    <dd>
+                      <p>1347 N Prospect St</p>
+                      <p>Colorado Springs, CO 80903</p>
+                    </dd>
                   </div>
                   <div className="flex gap-x-4">
                     <dt className="flex-none">
@@ -258,112 +286,14 @@ export default function Contact() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-lg text-gray-600">
-                Quick answers to common questions about contacting Bluebird Mortgage
-              </p>
-            </div>
+        <CollapsibleFAQ
+          title="Frequently Asked Questions"
+          subtitle="Quick answers to common questions about contacting Bluebird Mortgage"
+          faqs={contactFAQs}
+          defaultExpanded={false}
+        />
 
-            <div className="space-y-8">
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  How can I contact Bluebird Mortgage?
-                </h3>
-                <p className="text-gray-700">
-                  You can contact Bluebird Mortgage by calling 719-428-1038, emailing david@bluebirdmortgage.com, 
-                  or filling out our online contact form. We're available Monday-Friday 8am-7pm, and weekends by appointment.
-                </p>
-              </div>
 
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  How quickly does David Jeffrey respond to inquiries?
-                </h3>
-                <p className="text-gray-700">
-                  David Jeffrey typically responds to phone calls within hours and emails within 24 hours during 
-                  business days. For urgent mortgage questions, calling 719-428-1038 is the fastest way to reach us.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Do I need an appointment for a mortgage consultation?
-                </h3>
-                <p className="text-gray-700">
-                  While appointments are preferred for in-depth consultations, David Jeffrey is available for 
-                  quick questions during business hours. You can schedule a consultation by calling, emailing, 
-                  or using our contact form.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  What information should I have ready when contacting Bluebird Mortgage?
-                </h3>
-                <p className="text-gray-700">
-                  For an initial consultation, have your approximate credit score, monthly income, current debts, 
-                  down payment amount, and the price range of homes you're considering. This helps David provide 
-                  more accurate preliminary guidance.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Can I meet with David Jeffrey in person?
-                </h3>
-                <p className="text-gray-700">
-                  Yes, David Jeffrey offers in-person consultations in Colorado Springs, virtual meetings, and 
-                  phone consultations to accommodate your schedule and preferences. Contact us to schedule your 
-                  preferred meeting type.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Is there a cost for the initial mortgage consultation?
-                </h3>
-                <p className="text-gray-700">
-                  No, initial mortgage consultations with David Jeffrey are completely free. There's no obligation 
-                  and no cost to discuss your mortgage options, get pre-qualified, or ask questions about the 
-                  homebuying process.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="bg-[#00659C] py-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Ready to Get Started?
-            </h3>
-            <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-              Contact David Jeffrey today for a free consultation and personalized mortgage guidance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:719-428-1038"
-                className="inline-block bg-white text-[#00659C] px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
-              >
-                Call 719-428-1038
-              </a>
-              <a
-                href="https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg hover:bg-white hover:text-[#00659C] transition-colors font-semibold"
-              >
-                Start Application
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   )

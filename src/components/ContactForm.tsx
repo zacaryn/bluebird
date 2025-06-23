@@ -78,7 +78,7 @@ export default function ContactForm() {
               type="text"
               id="name"
               {...register('name', { required: 'Name is required' })}
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#00659C] sm:text-sm sm:leading-6"
             />
             {errors.name && (
               <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
@@ -101,7 +101,7 @@ export default function ContactForm() {
                   message: 'Invalid email address',
                 },
               })}
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#00659C] sm:text-sm sm:leading-6"
             />
             {errors.email && (
               <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>
@@ -124,7 +124,7 @@ export default function ContactForm() {
                   message: 'Invalid phone number format',
                 },
               })}
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#00659C] sm:text-sm sm:leading-6"
             />
             {errors.phone && (
               <p className="mt-2 text-sm text-red-600">{errors.phone.message}</p>
@@ -140,7 +140,7 @@ export default function ContactForm() {
             <select
               id="loanType"
               {...register('loanType', { required: 'Please select a loan type' })}
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[#00659C] sm:text-sm sm:leading-6"
             >
               <option value="">Select a loan type</option>
               <option value="va">VA Loan</option>
@@ -164,7 +164,7 @@ export default function ContactForm() {
               id="message"
               rows={4}
               {...register('message', { required: 'Message is required' })}
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#00659C] sm:text-sm sm:leading-6"
             />
             {errors.message && (
               <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>
@@ -211,7 +211,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-md bg-blue-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50 disabled:cursor-not-allowed w-full"
+          className="rounded-md bg-[#00659C] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#005483] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00659C] disabled:opacity-50 disabled:cursor-not-allowed w-full"
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>

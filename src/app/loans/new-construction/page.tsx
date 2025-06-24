@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const newConstructionSchema = {
@@ -55,16 +54,7 @@ const newConstructionSchema = {
       "name": "New Construction Home Loans",
       "description": "Construction-to-permanent loans for building custom homes in Colorado Springs with competitive rates and flexible terms during construction.",
       "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bluebird Mortgage",
-        "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-719-428-1038",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Colorado Springs",
-          "addressRegion": "Colorado",
-          "addressCountry": "US"
-        }
+        "@id": "https://bluebirdmortgage.com/#organization"
       },
       "areaServed": [
         {
@@ -172,7 +162,7 @@ export default function NewConstructionPage() {
 
   return (
     <>
-      <Script
+      <script
         id="new-construction-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

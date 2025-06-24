@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -85,16 +84,7 @@ const fhaLoansSchema = {
       "name": "FHA Home Loans",
       "description": "Federal Housing Administration insured loans with low down payment requirements and flexible credit guidelines, perfect for first-time homebuyers.",
       "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bluebird Mortgage",
-        "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-719-428-1038",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Colorado Springs",
-          "addressRegion": "Colorado",
-          "addressCountry": "US"
-        }
+        "@id": "https://bluebirdmortgage.com/#organization"
       },
       "areaServed": [
         {
@@ -220,8 +210,7 @@ export default function FHALoansPage() {
 
   return (
     <>
-      <Script
-        id="fha-loans-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(fhaLoansSchema),

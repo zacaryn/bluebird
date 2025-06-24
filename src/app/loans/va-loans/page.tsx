@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const benefits = [
@@ -107,16 +106,7 @@ const vaLoansSchema = {
       "name": "VA Home Loans",
       "description": "Veterans Affairs home loans with zero down payment, competitive rates, and flexible requirements for veterans and active duty military personnel.",
       "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bluebird Mortgage",
-        "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-719-428-1038",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Colorado Springs",
-          "addressRegion": "Colorado",
-          "addressCountry": "US"
-        }
+        "@id": "https://bluebirdmortgage.com/#organization"
       },
       "areaServed": [
         {
@@ -219,8 +209,7 @@ export default function VALoansPage() {
 
   return (
     <>
-      <Script
-        id="va-loans-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(vaLoansSchema),

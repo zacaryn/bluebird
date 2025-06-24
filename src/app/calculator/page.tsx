@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 import MortgageCalculator from '@/components/MortgageCalculator'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CollapsibleFAQ from '@/components/CollapsibleFAQ'
@@ -172,8 +171,7 @@ const breadcrumbItems = [
 export default function CalculatorPage() {
   return (
     <>
-      <Script
-        id="calculator-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(calculatorSchema),

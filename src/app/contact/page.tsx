@@ -1,5 +1,6 @@
+import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import type { Metadata } from 'next'
-import Script from 'next/script'
+import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CollapsibleFAQ from '@/components/CollapsibleFAQ'
@@ -174,7 +175,7 @@ const breadcrumbItems = [
 export default function Contact() {
   return (
     <>
-      <Script
+      <script
         id="contact-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

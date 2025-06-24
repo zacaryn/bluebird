@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     default: "Bluebird Mortgage | Colorado Springs Mortgage Lender | David Jeffrey NMLS# 2269251",
     template: "%s | Bluebird Mortgage"
   },
-  description: "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing. Fast approvals, competitive rates, personalized service.",
   keywords: "mortgage lender Colorado Springs, VA loans, FHA loans, conventional loans, mortgage rates Colorado, home financing, refinancing, David Jeffrey mortgage, NMLS 2269251, Colorado mortgage broker",
   authors: [{ name: "David Jeffrey", url: "https://bluebirdmortgage.com" }],
   creator: "Bluebird Mortgage",
@@ -71,54 +70,151 @@ const jsonLdSchema = {
       "@id": "https://bluebirdmortgage.com/#website",
       "url": "https://bluebirdmortgage.com/",
       "name": "Bluebird Mortgage",
-      "description": "Expert mortgage services in Colorado Springs with competitive rates and personalized service.",
+      "alternateName": "Bluebird Mortgage LLC",
+      "description": "Expert mortgage services in Colorado Springs with competitive rates and personalized service. Specializing in VA loans, FHA loans, conventional mortgages, and refinancing with NMLS# 2269251.",
+      "inLanguage": "en-US",
+      "isAccessibleForFree": true,
+      "isFamilyFriendly": true,
+      "keywords": "mortgage lender, VA loans, FHA loans, conventional loans, refinancing, Colorado Springs, NMLS 2269251",
+      "dateModified": "2025-01-08T12:00:00-07:00",
+      "accessMode": ["textual", "visual"],
       "publisher": {
         "@id": "https://bluebirdmortgage.com/#organization"
       },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://bluebirdmortgage.com/?s={search_term_string}"
+      "about": {
+        "@type": "Thing",
+        "name": "Mortgage Lending Services",
+        "description": "Professional mortgage lending services including VA loans, FHA loans, conventional loans, refinancing, and first-time homebuyer programs in Colorado Springs"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Homebuyers and Homeowners",
+        "geographicArea": {
+          "@type": "Place",
+          "name": "Colorado Springs, Colorado"
+        }
+      },
+      "mainEntity": {
+        "@id": "https://bluebirdmortgage.com/#organization"
+      },
+      "hasPart": [
+        {
+          "@type": "WebPage",
+          "name": "Loan Programs",
+          "url": "https://bluebirdmortgage.com/loans"
         },
-        "query-input": "required name=search_term_string"
+        {
+          "@type": "WebPage", 
+          "name": "First-Time Homebuyer Resources",
+          "url": "https://bluebirdmortgage.com/info/first-time-homebuyer"
+        },
+        {
+          "@type": "WebPage",
+          "name": "Mortgage Calculator",
+          "url": "https://bluebirdmortgage.com/calculator"
+        }
+      ],
+      "potentialAction": {
+        "@type": "SubscribeAction",
+        "target": "https://bluebirdmortgage.com/get-started",
+        "name": "Get Started"
+      },
+      "significantLink": [
+        "https://bluebirdmortgage.com/get-started",
+        "https://bluebirdmortgage.com/loans/va-loans",
+        "https://bluebirdmortgage.com/loans/fha-loans", 
+        "https://bluebirdmortgage.com/loans/conventional",
+        "https://bluebirdmortgage.com/loans/refinance",
+        "https://bluebirdmortgage.com/info/first-time-homebuyer",
+        "https://bluebirdmortgage.com/calculator",
+        "https://bluebirdmortgage.com/contact"
+      ],
+      "copyrightYear": "2025",
+      "copyrightHolder": {
+        "@id": "https://bluebirdmortgage.com/#organization"
       }
     },
     {
       "@type": "Organization",
       "@id": "https://bluebirdmortgage.com/#organization",
       "name": "Bluebird Mortgage",
+      "alternateName": "Bluebird Mortgage LLC",
       "legalName": "Bluebird Mortgage LLC",
       "url": "https://bluebirdmortgage.com/",
       "logo": {
         "@type": "ImageObject",
         "url": "https://bluebirdmortgage.com/images/logo.png",
         "width": 320,
-        "height": 80
+        "height": 80,
+        "contentUrl": "https://bluebirdmortgage.com/images/logo.png"
       },
       "image": {
         "@type": "ImageObject",
         "url": "https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg",
         "width": 1200,
-        "height": 630
+        "height": 630,
+        "contentUrl": "https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg"
       },
       "description": "Expert mortgage lender in Colorado Springs specializing in VA loans, FHA loans, conventional mortgages, and refinancing services.",
-      "sameAs": [
-        "https://www.facebook.com/bluebirdmtg/"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-719-428-1038",
-        "contactType": "customer service",
-        "areaServed": ["US", "Colorado", "Colorado Springs"],
-        "availableLanguage": ["English"],
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "08:00",
-          "closes": "19:00"
-        }
+      "foundingDate": "2020-01-01",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 1,
+        "maxValue": 10
       },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1347 N Prospect St",
+        "addressLocality": "Colorado Springs",
+        "addressRegion": "Colorado",
+        "postalCode": "80903",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Colorado Springs",
+          "containedInPlace": {
+            "@type": "AdministrativeArea", 
+            "name": "Colorado"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "El Paso County",
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Colorado"
+          }
+        }
+      ],
+      "email": "david@bluebirdmortgage.com",
+      "telephone": "+1-719-428-1038",
+      "sameAs": [
+        "https://www.facebook.com/bluebirdmtg/",
+        "https://g.co/kgs/kRVys2n"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+1-719-428-1038",
+          "contactType": "customer service",
+          "areaServed": ["US", "Colorado", "Colorado Springs"],
+          "availableLanguage": ["English"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "19:00"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "david@bluebirdmortgage.com",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        }
+      ],
       "founder": {
         "@type": "Person",
         "name": "David Jeffrey",
@@ -136,14 +232,19 @@ const jsonLdSchema = {
         }
       },
       "naics": "522310",
+      "isicV4": "6419",
       "knowsAbout": [
         "Mortgage Lending",
         "VA Loans", 
         "FHA Loans",
         "Conventional Loans",
         "Refinancing",
-        "Real Estate Finance"
-      ]
+        "Real Estate Finance",
+        "First-Time Homebuyer Programs",
+        "Down Payment Assistance"
+      ],
+      "keywords": "mortgage lender, VA loans, FHA loans, conventional loans, refinancing, Colorado Springs, NMLS 2269251, first-time homebuyer",
+      "slogan": "Making homeownership dreams come true in Colorado Springs"
     },
     {
       "@type": "FinancialService",
@@ -283,14 +384,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          id="schema-markup"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLdSchema),
-          }}
-        />
-        
         {/* Enhanced Social Media Meta Tags */}
         <meta property="og:image:secure_url" content="https://bluebirdmortgage.com/images/bluebird-mortgage-og-image.jpg" />
         <meta property="og:image:width" content="1200" />
@@ -332,6 +425,13 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={inter.className}>
+        <Script
+          id="schema-markup"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdSchema),
+          }}
+        />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

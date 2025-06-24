@@ -96,9 +96,9 @@ export default function Footer() {
         
         <div className="mt-8 border-t border-white/10 pt-8">
           <div className="flex flex-col sm:flex-row sm:justify-between items-center space-y-2 sm:space-y-0">
-            <p className="text-xs leading-5 text-gray-400">
-              &copy; {new Date().getFullYear()} Bluebird Mortgage. All rights reserved.
-            </p>
+          <p className="text-xs leading-5 text-gray-400">
+            &copy; {new Date().getFullYear()} Bluebird Mortgage. All rights reserved.
+          </p>
             <p className="text-xs leading-5 text-gray-500">
               Website developed by{' '}
               <a 

@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import type { Metadata } from "next";
-import Script from "next/script";
 import ContactForm from "@/components/ContactForm";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import CollapsibleFAQ from "@/components/CollapsibleFAQ";
@@ -162,6 +161,9 @@ const homepageSchema = {
       "isPartOf": {
         "@id": "https://bluebirdmortgage.com/#website"
       },
+      "about": {
+        "@id": "https://bluebirdmortgage.com/#organization"
+      },
       "datePublished": "2024-01-01",
       "dateModified": "2025-01-20",
       "description": "Expert mortgage services in Colorado Springs with David Jeffrey. Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
@@ -170,7 +172,15 @@ const homepageSchema = {
       },
       "breadcrumb": {
         "@id": "https://bluebirdmortgage.com/#breadcrumb"
-      }
+      },
+      "mainEntity": [
+        {
+          "@id": "https://bluebirdmortgage.com/#organization"
+        },
+        {
+          "@id": "https://bluebirdmortgage.com/#faqpage"
+        }
+      ]
     },
     {
       "@type": "ImageObject",
@@ -189,12 +199,14 @@ const homepageSchema = {
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Home"
+          "name": "Home",
+          "item": "https://bluebirdmortgage.com/"
         }
       ]
     },
     {
       "@type": "FAQPage",
+      "@id": "https://bluebirdmortgage.com/#faqpage",
       "mainEntity": [
         {
           "@type": "Question",
@@ -269,133 +281,6 @@ const homepageSchema = {
           }
         }
       ]
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://bluebirdmortgage.com/#organization",
-      "name": "Bluebird Mortgage",
-      "description": "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
-      "url": "https://bluebirdmortgage.com",
-      "telephone": "+1-719-428-1038",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Colorado Springs",
-        "addressRegion": "Colorado",
-        "addressCountry": "US"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "13",
-        "bestRating": "5",
-        "worstRating": "5"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "James Gardner"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "From the get go, David was so much better than dealing with veterans united. He got me a better approval with a better rate and was right there and got back to me within minutes every single time I needed him. This was my first home buying experience and David made it seamless."
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Xavier Hunt"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "This was a long strenuous process first time home buyers with a tight timeline and very little money, this guy was able to get us a great deal in 30 days and he worked for every minute of it, David will definitely get it done for you I recommend anyone trying to buy a home use a broker!"
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Mack Eickhoff"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "David and Andrea were very helpful and professional. I loved that even from Colorado Springs, they could help me all the way out in Grand Junction! I would highly recommend."
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Mike Janssen"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "Andrea and David are amazing!!! Highly recommend working with them as they really know what they are doing and will find you the house you want!"
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Jacob French"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "Andrea and David are awesome. I always have a ton of questions regarding commercial and investment properties. Andrea never fails to get me answers and the help I need!"
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Erin Lacey"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "I absolutely highly recommend Bluebird Mortgage! Both David and Andrea were so professional yet friendly and went above and beyond helping me every step of the way!"
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Jake Saliba"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "David and his team at Bluebird are amazing! As a Realtor he is my go to lender for all of my client's needs. He has always found a way to make the process as smooth and stress free as possible for all of them. I will continue to work with Bluebird in the future!"
-        },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Amanda Gaden"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "David was great to work with on our refi! He is laid back and also really knows his stuff. He did a great job of listening to what we needed (& fighting for that) while also helping us get better than what we had hoped for. We will absolutely use him again! Best experience we've ever had from a lender."
-        }
-      ]
     }
   ]
 };
@@ -403,8 +288,7 @@ const homepageSchema = {
 export default function Home() {
   return (
     <>
-      <Script
-        id="homepage-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(homepageSchema),

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import Script from 'next/script';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const aboutBluebirdSchema = {
@@ -103,7 +103,7 @@ export default function AboutBluebirdPage() {
 
   return (
     <>
-      <Script
+      <script
         id="about-bluebird-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

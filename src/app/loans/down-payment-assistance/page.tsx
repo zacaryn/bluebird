@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const downPaymentAssistanceSchema = {
@@ -55,16 +54,7 @@ const downPaymentAssistanceSchema = {
       "name": "Down Payment Assistance Programs",
       "description": "Access to CHFA and CHAC down payment assistance programs to help Colorado Springs homebuyers with down payments and closing costs.",
       "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bluebird Mortgage",
-        "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-719-428-1038",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Colorado Springs",
-          "addressRegion": "Colorado",
-          "addressCountry": "US"
-        }
+        "@id": "https://bluebirdmortgage.com/#organization"
       },
       "areaServed": [
         {
@@ -172,7 +162,7 @@ export default function DownPaymentAssistancePage() {
 
   return (
     <>
-      <Script
+      <script
         id="down-payment-assistance-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

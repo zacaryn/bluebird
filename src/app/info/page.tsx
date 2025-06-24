@@ -1,7 +1,6 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import Script from 'next/script';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -140,8 +139,7 @@ const breadcrumbItems = [
 export default function InformationPage() {
   return (
     <>
-      <Script
-        id="information-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(informationSchema),

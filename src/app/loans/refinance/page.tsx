@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const refinanceSchema = {
@@ -55,16 +54,7 @@ const refinanceSchema = {
       "name": "Mortgage Refinancing",
       "description": "Comprehensive mortgage refinancing services including rate and term refinance, cash-out refinance, VA IRRRL, and FHA streamline options.",
       "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bluebird Mortgage",
-        "url": "https://bluebirdmortgage.com",
-        "telephone": "+1-719-428-1038",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Colorado Springs",
-          "addressRegion": "Colorado",
-          "addressCountry": "US"
-        }
+        "@id": "https://bluebirdmortgage.com/#organization"
       },
       "areaServed": [
         {
@@ -172,8 +162,7 @@ export default function RefinancePage() {
 
   return (
     <>
-      <Script
-        id="refinance-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(refinanceSchema),

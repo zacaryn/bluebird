@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import Script from 'next/script';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const trustBluebirdSchema = {
@@ -138,7 +137,7 @@ export default function TrustBluebirdPage() {
 
   return (
     <>
-      <Script
+      <script
         id="trust-bluebird-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

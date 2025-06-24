@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import Link from 'next/link';
-import Script from 'next/script';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const firstTimeHomebuyerSchema = {
@@ -164,7 +164,7 @@ export default function FirstTimeHomebuyerPage() {
 
   return (
     <>
-      <Script
+      <script
         id="first-time-homebuyer-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

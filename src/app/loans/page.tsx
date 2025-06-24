@@ -1,7 +1,6 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import Script from 'next/script';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -186,7 +185,7 @@ const breadcrumbItems = [
 export default function LoanProgramsPage() {
   return (
     <>
-      <Script
+      <script
         id="loan-programs-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

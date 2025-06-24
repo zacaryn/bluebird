@@ -423,15 +423,16 @@ export default function RootLayout({
         <meta name="geo.position" content="38.8339;-104.8214" />
         <meta name="ICBM" content="38.8339, -104.8214" />
         <meta name="format-detection" content="telephone=no" />
-      </head>
-      <body className={inter.className}>
-        <Script
-          id="schema-markup"
+        
+        {/* Critical Schema Markup - In Head for Immediate Crawling */}
+        <script 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLdSchema),
           }}
         />
+      </head>
+      <body className={inter.className}>
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

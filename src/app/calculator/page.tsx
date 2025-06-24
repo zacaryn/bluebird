@@ -180,42 +180,42 @@ export default function CalculatorPage() {
         }}
       />
       
-      <div className="min-h-screen bg-white flex flex-col">
-        {/* Hero Section */}
-        <div className="relative bg-[#00659C]">
-          <div className="absolute inset-0 h-full w-full">
-            <Image
-              src="/images/calculate.jpg"
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Hero Section */}
+      <div className="relative bg-[#00659C]">
+        <div className="absolute inset-0 h-full w-full">
+          <Image
+            src="/images/calculate.jpg"
               alt="Mortgage Calculator Colorado Springs"
-              width={1920}
-              height={300}
-              className="h-full w-full object-cover"
-              priority
-              quality={90}
-            />
-            <div className="absolute inset-0 bg-[#00659C]/70" />
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 py-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Mortgage Calculator
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90">
-              Estimate Your Monthly Mortgage Payment in Colorado Springs
-            </p>
-          </div>
+            width={1920}
+            height={300}
+            className="h-full w-full object-cover"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-[#00659C]/70" />
         </div>
+          <div className="relative max-w-4xl mx-auto px-4 py-12 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Mortgage Calculator
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90">
+              Estimate Your Monthly Mortgage Payment in Colorado Springs
+          </p>
+        </div>
+      </div>
 
 
 
-        {/* Calculator section */}
-        <div className="flex-1 flex flex-col">
+      {/* Calculator section */}
+      <div className="flex-1 flex flex-col">
           <div className="mx-auto max-w-4xl w-full py-8 px-6">
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Calculator */}
               <div>
-                <MortgageCalculator />
-                <div className="mt-6 text-center text-sm text-gray-500">
-                  <p>
+          <MortgageCalculator />
+          <div className="mt-6 text-center text-sm text-gray-500">
+            <p>
                     This calculator provides estimates only. Contact David Jeffrey for personalized quotes.
                   </p>
                 </div>
@@ -229,7 +229,7 @@ export default function CalculatorPage() {
                   </h3>
                   <p className="text-white/90 mb-4 text-sm">
                     Get personalized rates and payments for your specific situation with David Jeffrey.
-                  </p>
+            </p>
                   <div className="space-y-3">
                     <Link
                       href="/contact"

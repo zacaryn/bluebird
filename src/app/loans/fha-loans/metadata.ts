@@ -9,11 +9,20 @@ export const metadata: Metadata = {
     description: 'Get an FHA loan with as little as 3.5% down. Perfect for first-time homebuyers in Colorado Springs.',
     type: 'article',
     url: 'https://bluebirdmortgage.com/loans/fha-loans',
+    images: [
+      {
+        url: '/images/coloradosprings2.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FHA Loans Colorado Springs - Bluebird Mortgage',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'FHA Loans Colorado Springs | Bluebird Mortgage',
     description: 'Get an FHA loan with as little as 3.5% down. Perfect for first-time homebuyers.',
+    images: ['/images/coloradosprings2.jpg'],
   },
   alternates: {
     canonical: 'https://bluebirdmortgage.com/loans/fha-loans',

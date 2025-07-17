@@ -3,6 +3,7 @@
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { Suspense } from 'react';
 
 declare global {
   interface Window {
@@ -12,7 +13,7 @@ declare global {
   }
 }
 
-export default function AdTracking() {
+function AdTrackingInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -164,5 +165,13 @@ export default function AdTracking() {
         `}
       </Script>
     </>
+  );
+}
+
+export default function AdTracking() {
+  return (
+    <Suspense fallback={null}>
+      <AdTrackingInner />
+    </Suspense>
   );
 } 

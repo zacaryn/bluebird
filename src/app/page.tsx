@@ -6,6 +6,7 @@ import ContactForm from "@/components/ContactForm";
 import MortgageCalculator from "@/components/MortgageCalculator";
 import CollapsibleFAQ from "@/components/CollapsibleFAQ";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import AdTracking from "@/components/AdTracking";
 
 const loanTypes = [
   {
@@ -128,8 +129,8 @@ const homeFAQs = [
 ]
 
 export const metadata: Metadata = {
-  title: "Bluebird Mortgage | Colorado Springs Mortgage Lender | David Jeffrey NMLS# 2269251",
-  description: "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing. Fast approvals, competitive rates, personalized service.",
+  title: "Bluebird Mortgage | Colorado Springs Mortgage Broker | David Jeffrey NMLS# 2269251",
+  description: "Expert mortgage broker services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing. Fast approvals, competitive rates, personalized service.",
   openGraph: {
     title: "Bluebird Mortgage | Colorado Springs Mortgage Lender | David Jeffrey",
     description: "Expert mortgage services in Colorado Springs with David Jeffrey (NMLS# 2269251). Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
@@ -329,12 +330,12 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl py-24 sm:py-32 lg:py-40">
               <div className="text-center">
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl drop-shadow-lg">
                   Your Path to Home Ownership Starts Here
                 </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-300">
+                <p className="mt-6 text-lg leading-8 text-gray-200 drop-shadow-md">
                   Bluebird Mortgage specializes in making the mortgage process simple and straightforward. 
-                  Let us help you navigate the path to homeownership with our expert guidance and diverse loan options.
+                  As your Colorado Springs mortgage broker, let us help you navigate the path to homeownership with our expert guidance and diverse loan options.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-4">
                   <Link
@@ -366,7 +367,7 @@ export default function Home() {
                 Find the Right Mortgage Solution
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                We offer a variety of loan programs to meet your unique needs. Explore our options below to find the perfect fit for your situation.
+                As your Colorado Springs mortgage broker, we offer a variety of loan programs to meet your unique needs. Our mortgage broker expertise helps you access better rates and loan options. Explore our programs below to find the perfect fit for your situation.
               </p>
             </div>
             <div className="mx-auto mt-12 max-w-2xl sm:mt-16 lg:max-w-none">
@@ -382,8 +383,8 @@ export default function Home() {
                     </dt>
                     <dd className="mt-4 text-base leading-7 text-gray-600">
                       <p>{loanType.description}</p>
-                      <p className="mt-4 inline-flex items-center text-sm font-semibold text-[#00659C] opacity-0 group-hover:opacity-100 transition-opacity">
-                        Learn more <ArrowRightIcon className="ml-2 h-4 w-4" />
+                      <p className="mt-4 inline-flex items-center text-sm font-semibold text-[#00659C] group-hover:text-[#004B73] transition-all group-hover:translate-x-1">
+                        Learn more <ArrowRightIcon className="ml-2 h-4 w-4 group-hover:ml-3 transition-all" />
                       </p>
                     </dd>
                   </Link>
@@ -449,6 +450,7 @@ export default function Home() {
 
 
       </div>
+      <AdTracking />
     </>
   )
 }

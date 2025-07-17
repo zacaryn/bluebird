@@ -4,6 +4,7 @@ import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CollapsibleFAQ from '@/components/CollapsibleFAQ'
+import AdTracking from '@/components/AdTracking'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Bluebird Mortgage Colorado Springs | David Jeffrey NMLS# 2269251',
@@ -296,6 +297,7 @@ export default function Contact() {
 
 
     </div>
+    <AdTracking />
     </>
   )
 } 

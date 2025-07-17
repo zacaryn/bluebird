@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { CognitoIdentityProviderClient, InitiateAuthCommand, RespondToAuthChallengeCommand } from '@aws-sdk/client-cognito-identity-provider';
+import { sendLeadEmail } from './lib/send-email.js';
 
 // Load environment variables from .env.local or .env
 dotenv.config({ path: process.env.NODE_ENV === 'production' ? '.env' : '.env.local' });
@@ -307,6 +308,19 @@ app.post('/api/inquiries', async (req, res) => {
     const inquiry = req.body;
     const result = await InquiriesDB.add(inquiry);
 
+    // Send email notification to David
+    const emailSuccess = await sendLeadEmail({
+      source: 'Contact Form',
+      name: inquiry.name,
+      email: inquiry.email,
+      phone: inquiry.phone,
+      message: inquiry.message
+    });
+
+    if (!emailSuccess) {
+      console.log('Email notification failed, but inquiry was saved');
+    }
+
     return res.json({
       success: true,
       message: 'Inquiry submitted successfully',
@@ -401,6 +415,19 @@ app.post('/api/leads', async (req, res) => {
   try {
     const lead = req.body;
     const result = await LeadsDB.add(lead);
+
+    // Send email notification to David
+    const emailSuccess = await sendLeadEmail({
+      source: 'Get Started Form',
+      name: `${lead.firstName} ${lead.lastName}`,
+      email: lead.email,
+      phone: lead.phone,
+      message: `Loan Type: ${lead.loanType}\nProperty Value: $${lead.propertyValue}\nDown Payment: $${lead.downPayment || 'Not specified'}\nCredit Score: ${lead.creditScore || 'Not specified'}\nTimeframe: ${lead.timeframe}`
+    });
+
+    if (!emailSuccess) {
+      console.log('Email notification failed, but lead was saved');
+    }
 
     return res.json({
       success: true,

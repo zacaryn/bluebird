@@ -47,16 +47,19 @@ export default function AdTracking() {
         `}
       </Script> */}
 
-      {/* Google Tag Manager - Uncomment and add your GTM ID when ready */}
-      {/* <Script id="google-tag-manager">
+      {/* Google Ads Global Site Tag */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11010865100"
+        strategy="afterInteractive"
+      />
+      <Script id="google-ads-init" strategy="afterInteractive">
         {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','YOUR_GTM_ID');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-11010865100');
         `}
-      </Script> */}
+      </Script>
 
       {/* Function to track form submissions */}
       <Script id="tracking-functions">
@@ -83,6 +86,27 @@ export default function AdTracking() {
           }
 
           function trackFormSubmission(data) {
+            // Google Ads Conversion Tracking - Lead Form Submission
+            if (window.gtag) {
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-11010865100/VHzTCM3xmPIaEMzvsYIp',
+                'value': 125.0,
+                'currency': 'USD',
+                'event_callback': function() {
+                  console.log('Lead form conversion tracked');
+                }
+              });
+              
+              // Enhanced conversion with user data (optional)
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-11010865100/VHzTCM3xmPIaEMzvsYIp',
+                'user_data': {
+                  'email_address': data.email,
+                  'phone_number': data.phone
+                }
+              });
+            }
+
             // Facebook Pixel tracking
             if (window.fbq) {
               window.fbq('track', 'SubmitApplication', {
@@ -92,15 +116,51 @@ export default function AdTracking() {
               });
             }
 
-            // Google Analytics tracking
+            // Google Analytics tracking  
             if (window.gtag) {
               window.gtag('event', 'generate_lead', {
                 event_category: 'Mortgage Application',
                 event_label: 'Form Submission',
+                campaign_source: data.utm_source || 'direct',
+                campaign_medium: data.utm_medium || 'none',
+                campaign_name: data.utm_campaign || 'none',
                 ...data
               });
             }
           }
+
+          // Phone call tracking function
+          function trackPhoneCall(phoneNumber) {
+            // Google Ads Phone Call Conversion - Contact category
+            if (window.gtag) {
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-11010865100/KV67CIHeoPIaEMzvsYIp',
+                'value': 225.0,
+                'currency': 'USD'
+              });
+            }
+
+            // Google Analytics phone call event
+            if (window.gtag) {
+              window.gtag('event', 'phone_call', {
+                event_category: 'Contact',
+                event_label: phoneNumber,
+                value: 100
+              });
+            }
+          }
+
+          // Auto-setup phone call tracking on page load
+          document.addEventListener('DOMContentLoaded', function() {
+            // Track clicks on phone links
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(function(link) {
+              link.addEventListener('click', function() {
+                const phoneNumber = this.getAttribute('href').replace('tel:', '');
+                trackPhoneCall(phoneNumber);
+              });
+            });
+          });
         `}
       </Script>
     </>

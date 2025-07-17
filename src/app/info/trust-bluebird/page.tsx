@@ -1,7 +1,37 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Why Trust Bluebird Mortgage | Colorado Springs | David Jeffrey NMLS# 2269251',
+  description: 'Discover why homebuyers trust Bluebird Mortgage for their financing needs in Colorado Springs. Expert service, competitive rates, and personalized solutions.',
+  keywords: 'trust Bluebird Mortgage, Colorado Springs mortgage trust, reliable mortgage broker, David Jeffrey, NMLS 2269251, mortgage testimonials',
+  openGraph: {
+    title: 'Why Trust Bluebird Mortgage | Colorado Springs',
+    description: 'Expert mortgage service you can trust. Competitive rates, personalized solutions, and professional guidance.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/info/trust-bluebird',
+    images: [
+      {
+        url: '/images/bluebird.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Trust Bluebird Mortgage - Colorado Springs',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Why Trust Bluebird Mortgage',
+    description: 'Expert mortgage service you can trust in Colorado Springs.',
+    images: ['/images/bluebird.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/info/trust-bluebird',
+  },
+};
 
 const trustBluebirdSchema = {
   "@context": "https://schema.org",

@@ -1,7 +1,37 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Down Payment Assistance Colorado Springs | CHFA & CHAC Programs | David Jeffrey NMLS# 2269251',
+  description: 'Down payment assistance programs in Colorado Springs through CHFA and CHAC to help homebuyers with down payments and closing costs. Expert guidance from David Jeffrey NMLS# 2269251.',
+  keywords: 'down payment assistance Colorado Springs, CHFA programs, CHAC assistance, first time homebuyer programs, Colorado down payment help, David Jeffrey, NMLS 2269251',
+  openGraph: {
+    title: 'Down Payment Assistance Colorado Springs | CHFA & CHAC Programs',
+    description: 'Get help with down payments and closing costs through Colorado state programs. CHFA and CHAC assistance for qualified homebuyers.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/loans/down-payment-assistance',
+    images: [
+      {
+        url: '/images/homebuyer.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Down Payment Assistance Colorado Springs - Bluebird Mortgage',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Down Payment Assistance Colorado Springs',
+    description: 'Get help with down payments and closing costs through Colorado state programs.',
+    images: ['/images/homebuyer.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/loans/down-payment-assistance',
+  },
+};
 
 const downPaymentAssistanceSchema = {
   "@context": "https://schema.org",

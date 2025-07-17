@@ -4,6 +4,35 @@ import { format } from 'date-fns';
 import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+export const metadata: Metadata = {
+  title: 'First-Time Homebuyer Guide Colorado Springs | David Jeffrey NMLS# 2269251',
+  description: 'Complete first-time homebuyer guide for Colorado Springs with tips, programs, and financing options. Expert guidance from David Jeffrey NMLS# 2269251.',
+  keywords: 'first time homebuyer Colorado Springs, first time buyer programs, homebuying guide, FHA loans, down payment assistance, David Jeffrey, NMLS 2269251',
+  openGraph: {
+    title: 'First-Time Homebuyer Guide Colorado Springs',
+    description: 'Complete guide to buying your first home in Colorado Springs with expert tips and financing options.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/info/first-time-homebuyer',
+    images: [
+      {
+        url: '/images/homebuyer.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'First-Time Homebuyer Guide Colorado Springs - Bluebird Mortgage',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'First-Time Homebuyer Guide Colorado Springs',
+    description: 'Complete guide to buying your first home in Colorado Springs.',
+    images: ['/images/homebuyer.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/info/first-time-homebuyer',
+  },
+};
+
 const firstTimeHomebuyerSchema = {
   "@context": "https://schema.org",
   "@graph": [

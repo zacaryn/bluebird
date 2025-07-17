@@ -4,6 +4,35 @@ import { format } from 'date-fns';
 import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+export const metadata: Metadata = {
+  title: 'About Bluebird Mortgage | David Jeffrey NMLS# 2269251 | Colorado Springs',
+  description: 'Learn about Bluebird Mortgage and owner David Jeffrey, serving Colorado Springs with expert mortgage services and personalized solutions. NMLS# 2269251.',
+  keywords: 'about Bluebird Mortgage, David Jeffrey, NMLS 2269251, Colorado Springs mortgage broker, mortgage professional, loan officer',
+  openGraph: {
+    title: 'About Bluebird Mortgage | David Jeffrey NMLS# 2269251',
+    description: 'Expert mortgage services in Colorado Springs with personalized solutions and professional guidance.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/info/about-bluebird',
+    images: [
+      {
+        url: '/images/david.png',
+        width: 1200,
+        height: 630,
+        alt: 'About Bluebird Mortgage - David Jeffrey',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Bluebird Mortgage',
+    description: 'Expert mortgage services in Colorado Springs with personalized solutions.',
+    images: ['/images/david.png'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/info/about-bluebird',
+  },
+};
+
 const aboutBluebirdSchema = {
   "@context": "https://schema.org",
   "@graph": [

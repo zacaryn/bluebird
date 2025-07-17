@@ -1,7 +1,37 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Refinance Your Mortgage Colorado Springs | Lower Rates & Payments | David Jeffrey NMLS# 2269251',
+  description: 'Mortgage refinancing in Colorado Springs to lower rates, reduce payments, or access home equity. Expert refinancing services from David Jeffrey NMLS# 2269251.',
+  keywords: 'mortgage refinance Colorado Springs, refinancing, lower mortgage rates, reduce payments, cash out refinance, David Jeffrey, NMLS 2269251',
+  openGraph: {
+    title: 'Refinance Your Mortgage Colorado Springs | Lower Rates & Payments',
+    description: 'Lower your mortgage rate and reduce payments with refinancing. Access home equity or consolidate debt.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/loans/refinance',
+    images: [
+      {
+        url: '/images/loan2.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Mortgage Refinancing Colorado Springs - Bluebird Mortgage',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Refinance Your Mortgage Colorado Springs',
+    description: 'Lower your mortgage rate and reduce payments with refinancing.',
+    images: ['/images/loan2.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/loans/refinance',
+  },
+};
 
 const refinanceSchema = {
   "@context": "https://schema.org",

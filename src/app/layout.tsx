@@ -173,7 +173,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
-        <link rel="canonical" href="https://bluebirdmortgage.com" />
         <meta name="geo.region" content="US-CO" />
         <meta name="geo.placename" content="Colorado Springs" />
         <meta name="geo.position" content="38.8339;-104.8214" />

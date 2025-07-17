@@ -1,7 +1,37 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Reverse Mortgage Colorado Springs | HECM Loans | David Jeffrey NMLS# 2269251',
+  description: 'Expert reverse mortgage services in Colorado Springs with FHA-insured HECM loans for homeowners 62 and older. Professional guidance from David Jeffrey NMLS# 2269251.',
+  keywords: 'reverse mortgage Colorado Springs, HECM loans, FHA reverse mortgage, seniors mortgage, 62 and older, David Jeffrey, NMLS 2269251',
+  openGraph: {
+    title: 'Reverse Mortgage Colorado Springs | HECM Loans',
+    description: 'FHA-insured reverse mortgages for homeowners 62 and older. Convert home equity to cash with no monthly payments.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/loans/reverse-mortgage',
+    images: [
+      {
+        url: '/images/coloradosprings1.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Reverse Mortgage Colorado Springs - Bluebird Mortgage',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Reverse Mortgage Colorado Springs',
+    description: 'FHA-insured reverse mortgages for homeowners 62 and older.',
+    images: ['/images/coloradosprings1.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/loans/reverse-mortgage',
+  },
+};
 
 const reverseMortgageSchema = {
   "@context": "https://schema.org",

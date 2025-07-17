@@ -1,7 +1,37 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
+import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'New Construction Loans Colorado Springs | Build Your Dream Home | David Jeffrey NMLS# 2269251',
+  description: 'New construction home loans in Colorado Springs with construction-to-permanent financing for custom home builds. Expert guidance from David Jeffrey NMLS# 2269251.',
+  keywords: 'new construction loans Colorado Springs, construction to permanent loans, custom home financing, construction loans, build your home, David Jeffrey, NMLS 2269251',
+  openGraph: {
+    title: 'New Construction Loans Colorado Springs | Build Your Dream Home',
+    description: 'Construction-to-permanent financing for your custom home build in Colorado Springs. Expert guidance through the entire process.',
+    type: 'article',
+    url: 'https://bluebirdmortgage.com/loans/new-construction',
+    images: [
+      {
+        url: '/images/construction.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'New Construction Loans Colorado Springs - Bluebird Mortgage',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'New Construction Loans Colorado Springs',
+    description: 'Construction-to-permanent financing for your custom home build. Expert guidance through the entire process.',
+    images: ['/images/construction.jpg'],
+  },
+  alternates: {
+    canonical: 'https://bluebirdmortgage.com/loans/new-construction',
+  },
+};
 
 const newConstructionSchema = {
   "@context": "https://schema.org",

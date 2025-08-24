@@ -66,12 +66,21 @@ const jsonLdSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Bluebird Mortgage",
+  "alternateName": [
+    "Bluebird Mortgage",
+    "Bluebird Mortgage LLC",
+    "Bluebird Mortgage - Colorado Springs"
+  ],
   "url": "https://bluebirdmortgage.com/",
   "description": "Expert mortgage services in Colorado Springs with David Jeffrey NMLS# 2269251. Specializing in VA loans, FHA loans, conventional mortgages, and refinancing.",
   "publisher": {
     "@type": "Organization",
     "name": "Bluebird Mortgage",
     "legalName": "Bluebird Mortgage LLC",
+    "alternateName": [
+      "Bluebird Mortgage",
+      "Bluebird Mortgage LLC"
+    ],
     "url": "https://bluebirdmortgage.com/",
     "logo": {
       "@type": "ImageObject",

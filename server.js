@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { CognitoIdentityProviderClient, InitiateAuthCommand, RespondToAuthChallengeCommand } from '@aws-sdk/client-cognito-identity-provider';
 import { sendLeadEmail } from './lib/send-email.js';
+import { createFormSpamMiddleware, validateInquiry, validateLead } from './lib/spam-protection.js';
 
 // Load environment variables from .env.local or .env
 dotenv.config({ path: process.env.NODE_ENV === 'production' ? '.env' : '.env.local' });
@@ -20,6 +21,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 const isProduction = process.env.NODE_ENV === 'production';
+
+// Trust proxy for correct IP behind Nginx/Cloudflare
+app.set('trust proxy', 1);
 
 // Middleware
 app.use(cors({
@@ -302,10 +306,16 @@ app.delete('/api/inquiries/:id', verifyToken, async (req, res) => {
   }
 });
 
-// API endpoint to submit an inquiry (public)
-app.post('/api/inquiries', async (req, res) => {
+// API endpoint to submit an inquiry (public) - with spam protection
+const inquirySpamMiddleware = createFormSpamMiddleware({
+  endpoint: 'inquiries',
+  validatePayload: validateInquiry,
+  payloadKeys: ['name', 'email', 'phone', 'message', 'loanType']
+});
+
+app.post('/api/inquiries', inquirySpamMiddleware, async (req, res) => {
   try {
-    const inquiry = req.body;
+    const inquiry = req.sanitizedBody;
     const result = await InquiriesDB.add(inquiry);
 
     // Send email notification to David
@@ -410,10 +420,16 @@ app.delete('/api/leads/:id', verifyToken, async (req, res) => {
   }
 });
 
-// API endpoint to submit a lead (public)
-app.post('/api/leads', async (req, res) => {
+// API endpoint to submit a lead (public) - with spam protection
+const leadSpamMiddleware = createFormSpamMiddleware({
+  endpoint: 'leads',
+  validatePayload: validateLead,
+  payloadKeys: ['firstName', 'lastName', 'email', 'phone', 'loanType', 'propertyValue', 'downPayment', 'creditScore', 'timeframe']
+});
+
+app.post('/api/leads', leadSpamMiddleware, async (req, res) => {
   try {
-    const lead = req.body;
+    const lead = req.sanitizedBody;
     const result = await LeadsDB.add(lead);
 
     // Send email notification to David

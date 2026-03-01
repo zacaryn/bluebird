@@ -14,6 +14,7 @@ type ContactFormData = {
   phone: string;
   message: string;
   loanType: string;
+  company?: string;
 };
 
 const googleReviews = [
@@ -40,6 +41,7 @@ const googleReviews = [
 ];
 
 export default function VALoanSpecialistLanding() {
+  const [formStartTime] = useState(() => Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [error, setError] = useState<string>('');
@@ -74,7 +76,9 @@ export default function VALoanSpecialistLanding() {
           email: data.email,
           phone: data.phone,
           message: data.message,
-          loanType: data.loanType
+          loanType: data.loanType,
+          company: data.company,
+          _formStartTime: formStartTime
         }),
       });
 
@@ -441,6 +445,12 @@ export default function VALoanSpecialistLanding() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Honeypot - hidden from users, bots fill it */}
+                  <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="company">Company</label>
+                    <input type="text" id="company" {...register('company')} tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
                       Full Name *

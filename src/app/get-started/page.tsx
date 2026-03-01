@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import AdTracking from '@/components/AdTracking';
@@ -91,6 +91,8 @@ const loanTypeData: Record<string, LoanTypeInfo> = {
 // Create a new component to handle search params
 function GetStartedForm() {
   const searchParams = useSearchParams();
+  const [formStartTime] = useState(() => Date.now());
+  const companyRef = useRef<HTMLInputElement>(null);
   const [currentStep, setCurrentStep] = useState<Step>('intro');
   const [formData, setFormData] = useState<FormData>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -180,7 +182,7 @@ function GetStartedForm() {
       };
 
       // Prepare lead data
-      const leadData: LeadInput = {
+      const leadData: LeadInput & { company?: string; _formStartTime?: number } = {
         firstName: formData.firstName!,
         lastName: formData.lastName!,
         email: formData.email!,
@@ -189,7 +191,9 @@ function GetStartedForm() {
         propertyValue: cleanCurrencyValue(formData.propertyValue),
         downPayment: cleanCurrencyValue(formData.downPayment),
         creditScore: formData.creditScore as any,
-        timeframe: formData.timeframe as any
+        timeframe: formData.timeframe as any,
+        company: companyRef.current?.value || '',
+        _formStartTime: formStartTime
       };
 
       // Submit to API
@@ -354,7 +358,13 @@ function GetStartedForm() {
         Tell Us About Your Plans
       </h2>
       
-      <div className="space-y-6">
+      <div className="space-y-6 relative">
+        {/* Honeypot - hidden from users, bots fill it */}
+        <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
+          <label htmlFor="company">Company</label>
+          <input type="text" id="company" ref={companyRef} name="company" tabIndex={-1} autoComplete="off" />
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Estimated Property Value *

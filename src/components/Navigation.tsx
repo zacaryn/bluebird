@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Transition } from '@headlessui/react'
@@ -59,7 +59,14 @@ export default function Navigation() {
             <Image src="/images/logo.png" alt="Bluebird Mortgage" width={320} height={80} className="h-20 w-auto" />
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
+          <a
+            href="tel:719-428-1038"
+            className="inline-flex items-center justify-center rounded-md p-2.5 text-[#00659C] hover:text-[#005483]"
+            aria-label="Call (719) 428-1038"
+          >
+            <PhoneIcon className="h-6 w-6" aria-hidden="true" />
+          </a>
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -127,6 +134,13 @@ export default function Navigation() {
               </Link>
             )
           ))}
+          <a
+            href="tel:719-428-1038"
+            className="inline-flex items-center gap-1.5 text-base font-medium text-[#00659C] hover:text-[#005483] transition-colors py-1"
+          >
+            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+            (719) 428-1038
+          </a>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -148,6 +162,16 @@ export default function Navigation() {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="py-4">
+                <a
+                  href="tel:719-428-1038"
+                  className="flex items-center gap-2 rounded-lg bg-[#00659C]/10 px-3.5 py-3 text-sm font-semibold text-[#00659C]"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+                  Call David — (719) 428-1038
+                </a>
+              </div>
               <div className="space-y-2 py-6">
                 {navigation.main.map((item) => (
                   item.items ? (

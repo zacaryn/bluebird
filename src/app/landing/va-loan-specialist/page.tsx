@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
-import AdTracking from '@/components/AdTracking';
+import { trackLeadFormConversion } from '@/components/AdTracking';
 import AnimatedStats from '@/components/AnimatedStats';
 
 type ContactFormData = {
@@ -87,6 +87,7 @@ export default function VALoanSpecialistLanding() {
         throw new Error(errorData.error || 'Failed to submit inquiry');
       }
 
+      trackLeadFormConversion();
       setSubmitSuccess(true);
       reset();
       
@@ -652,7 +653,6 @@ export default function VALoanSpecialistLanding() {
         </div>
       </div>
 
-      <AdTracking />
     </div>
   );
 } 

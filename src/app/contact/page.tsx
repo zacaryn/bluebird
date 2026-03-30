@@ -4,8 +4,6 @@ import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CollapsibleFAQ from '@/components/CollapsibleFAQ'
-import AdTracking from '@/components/AdTracking'
-
 export const metadata: Metadata = {
   title: 'Contact Us | Bluebird Mortgage Colorado Springs | David Jeffrey NMLS# 2269251',
   description: 'Contact Bluebird Mortgage in Colorado Springs for all your home financing needs. Get expert guidance on VA loans, FHA loans, conventional loans, and more. Call 719-428-1038.',
@@ -195,6 +193,15 @@ export default function Contact() {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Have questions about our mortgage services? We're here to help you navigate the home financing process.
               </p>
+              <div className="mt-6">
+                <a
+                  href="tel:719-428-1038"
+                  className="inline-flex items-center gap-2.5 rounded-lg bg-[#00659C] px-6 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-[#005483] transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
+                  Call David — (719) 428-1038
+                </a>
+              </div>
                 <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600 contact-info">
                 <div className="flex gap-x-4">
                   <dt className="flex-none">
@@ -297,7 +304,6 @@ export default function Contact() {
 
 
     </div>
-    <AdTracking />
     </>
   )
 } 

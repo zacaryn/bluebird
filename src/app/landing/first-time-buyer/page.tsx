@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
-import AdTracking from '@/components/AdTracking';
+import { trackLeadFormConversion } from '@/components/AdTracking';
 import BuyVsRentComparison from '@/components/BuyVsRentComparison';
 import AnimatedStats from '@/components/AnimatedStats';
 
@@ -88,6 +88,7 @@ export default function FirstTimeBuyerLanding() {
         throw new Error(errorData.error || 'Failed to submit inquiry');
       }
 
+      trackLeadFormConversion();
       setSubmitSuccess(true);
       reset();
       
@@ -529,7 +530,6 @@ export default function FirstTimeBuyerLanding() {
         </div>
       </div>
 
-      <AdTracking />
     </div>
   );
 } 

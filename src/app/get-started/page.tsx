@@ -3,16 +3,9 @@
 import { useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import AdTracking from '@/components/AdTracking';
+import { trackLeadFormConversion } from '@/components/AdTracking';
 import Link from 'next/link';
 import type { LeadInput } from '@/types';
-
-declare global {
-  interface Window {
-    trackFormStep?: (step: string, data: any) => void;
-    trackFormSubmission?: (data: any) => void;
-  }
-}
 
 type Step = 'intro' | 'qualify' | 'details' | 'final';
 
@@ -159,10 +152,6 @@ function GetStartedForm() {
       return;
     }
 
-    // Track step completion
-    if (typeof window !== 'undefined' && window.trackFormStep) {
-      window.trackFormStep(currentStep, formData);
-    }
     setCurrentStep(nextStep);
   };
 
@@ -221,16 +210,7 @@ function GetStartedForm() {
         throw new Error(errorData.error || 'Failed to submit lead information');
       }
 
-      // Track form submission
-      if (typeof window !== 'undefined' && window.trackFormSubmission) {
-        window.trackFormSubmission({
-          ...formData,
-          utm_source: source,
-          utm_medium: medium,
-          utm_campaign: campaign,
-        });
-      }
-
+      trackLeadFormConversion();
       setCurrentStep('final');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'An error occurred while submitting your information');
@@ -315,10 +295,6 @@ function GetStartedForm() {
               // Clear any existing errors and move to next step
               setErrors({});
               setCurrentStep('details');
-              // Track step completion
-              if (typeof window !== 'undefined' && window.trackFormStep) {
-                window.trackFormStep('qualify', { ...formData, loanType: key });
-              }
             }}
             className={`w-full p-4 text-left bg-white border rounded-lg hover:border-[#00659C] focus:border-[#00659C] focus:ring-2 focus:ring-[#00659C] focus:ring-opacity-20 transition-colors ${
               formData.loanType === key ? 'border-[#00659C] ring-2 ring-[#00659C] ring-opacity-20' : 'border-gray-300'
@@ -336,10 +312,6 @@ function GetStartedForm() {
             // Clear any existing errors and move to next step
             setErrors({});
             setCurrentStep('details');
-            // Track step completion
-            if (typeof window !== 'undefined' && window.trackFormStep) {
-              window.trackFormStep('qualify', { ...formData, loanType: 'not-sure' });
-            }
           }}
           className={`w-full p-4 text-left bg-white border rounded-lg hover:border-[#00659C] focus:border-[#00659C] focus:ring-2 focus:ring-[#00659C] focus:ring-opacity-20 transition-colors ${
             formData.loanType === 'not-sure' ? 'border-[#00659C] ring-2 ring-[#00659C] ring-opacity-20' : 'border-gray-300'
@@ -672,7 +644,6 @@ function GetStartedForm() {
           {currentStep === 'final' && renderFinalStep()}
         </div>
       </div>
-      <AdTracking />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
-import AdTracking from '@/components/AdTracking';
+import { trackLeadFormConversion } from '@/components/AdTracking';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import AnimatedStats from '@/components/AnimatedStats';
 
@@ -89,6 +89,7 @@ export default function RefinanceSolutionsLanding() {
         throw new Error(errorData.error || 'Failed to submit inquiry');
       }
 
+      trackLeadFormConversion();
       setSubmitSuccess(true);
       reset();
       
@@ -587,7 +588,6 @@ export default function RefinanceSolutionsLanding() {
         </div>
       </div>
 
-      <AdTracking />
     </div>
   );
 } 

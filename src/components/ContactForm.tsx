@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { trackLeadFormConversion } from './AdTracking'
 
 type FormData = {
   name: string
@@ -60,6 +61,7 @@ export default function ContactForm() {
         throw new Error(errorData.error || 'Failed to submit inquiry');
       }
 
+      trackLeadFormConversion();
       setSubmitSuccess(true)
       reset()
     } catch (err) {

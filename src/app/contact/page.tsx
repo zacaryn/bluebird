@@ -211,8 +211,8 @@ export default function Contact() {
                     </svg>
                   </dt>
                     <dd>
-                      <p>1347 N Prospect St</p>
-                      <p>Colorado Springs, CO 80903</p>
+                      <p>2301 E Pikes Peak Ave Ste 326</p>
+                      <p>Colorado Springs, CO 80909</p>
                     </dd>
                 </div>
                 <div className="flex gap-x-4">

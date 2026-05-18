@@ -12,6 +12,7 @@ const navigation = {
     { name: 'About', href: '/info/about-bluebird' },
     { name: 'Calculator', href: '/calculator' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Terms of Use', href: '/terms-of-use' },
     { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', external: true },
   ],
 }
@@ -30,8 +31,8 @@ export default function Footer() {
             </Link>
             <div className="text-sm text-gray-300">
               <div className="mb-3">
-                <p>1347 N Prospect St</p>
-                <p>Colorado Springs, CO 80903</p>
+                <p>2301 E Pikes Peak Ave Ste 326</p>
+                <p>Colorado Springs, CO 80909</p>
               </div>
               <p>NMLS# 2269251</p>
               <p>

@@ -28,6 +28,7 @@ const navigation = {
         { name: 'Down Payment Assistance', href: '/loans/down-payment-assistance' },
         { name: 'About Bluebird', href: '/info/about-bluebird' },
         { name: 'Trust Bluebird', href: '/info/trust-bluebird' },
+        { name: 'Terms of Use', href: '/terms-of-use' },
       ],
     },
     { name: 'Calculator', href: '/calculator' },

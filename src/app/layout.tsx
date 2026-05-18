@@ -96,10 +96,10 @@ const jsonLdSchema = {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1347 N Prospect St",
+      "streetAddress": "2301 E Pikes Peak Ave Ste 326",
       "addressLocality": "Colorado Springs",
       "addressRegion": "Colorado",
-      "postalCode": "80903",
+      "postalCode": "80909",
       "addressCountry": "US"
     },
     "telephone": "+1-719-428-1038",

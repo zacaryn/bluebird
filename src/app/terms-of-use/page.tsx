@@ -12,7 +12,15 @@ export const metadata: Metadata = {
 
 const breadcrumbItems = [{ name: 'Terms of Use', href: '/terms-of-use', current: true }]
 
-const termsSections = [
+type TermsSection = {
+  heading: string
+  body: string[]
+  bullets?: string[]
+  contactLines?: string[]
+  footer?: string
+}
+
+const termsSections: TermsSection[] = [
   {
     heading: 'Informational Purposes Only',
     body: [
@@ -110,7 +118,7 @@ const termsSections = [
     ],
     footer: 'If you have questions regarding these Terms of Use, please contact us directly.',
   },
-] as const
+]
 
 export default function TermsOfUsePage() {
   return (

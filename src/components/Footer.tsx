@@ -13,6 +13,7 @@ const navigation = {
     { name: 'Calculator', href: '/calculator' },
     { name: 'Contact', href: '/contact' },
     { name: 'Terms of Use', href: '/terms-of-use' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
     { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', external: true },
   ],
 }

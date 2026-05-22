@@ -29,6 +29,7 @@ const navigation = {
         { name: 'About Bluebird', href: '/info/about-bluebird' },
         { name: 'Trust Bluebird', href: '/info/trust-bluebird' },
         { name: 'Terms of Use', href: '/terms-of-use' },
+        { name: 'Privacy Policy', href: '/privacy-policy' },
       ],
     },
     { name: 'Calculator', href: '/calculator' },

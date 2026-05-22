@@ -12,9 +12,12 @@ const navigation = {
     { name: 'About', href: '/info/about-bluebird' },
     { name: 'Calculator', href: '/calculator' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', external: true },
+  ],
+  legal: [
     { name: 'Terms of Use', href: '/terms-of-use' },
     { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Apply Now', href: 'https://www.blink.mortgage/app/signup/p/bluebirdmortgage/davidjeffrey', external: true },
+    { name: 'Website Disclosures', href: '/website-disclosures' },
   ],
 }
 
@@ -57,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="mt-8 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+          <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:col-span-2 xl:mt-0">
             <div>
               <h3 className="text-sm font-semibold leading-6 text-white">Loan Programs</h3>
               <ul role="list" className="mt-4 space-y-3">
@@ -89,6 +92,18 @@ export default function Footer() {
                         {item.name}
                       </Link>
                     )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold leading-6 text-white">Legal</h3>
+              <ul role="list" className="mt-4 space-y-3">
+                {navigation.legal.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

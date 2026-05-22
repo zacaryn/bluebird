@@ -30,6 +30,7 @@ const navigation = {
         { name: 'Trust Bluebird', href: '/info/trust-bluebird' },
         { name: 'Terms of Use', href: '/terms-of-use' },
         { name: 'Privacy Policy', href: '/privacy-policy' },
+        { name: 'Website Disclosures', href: '/website-disclosures' },
       ],
     },
     { name: 'Calculator', href: '/calculator' },
